@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DoorsAn</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/signin.css" rel="stylesheet" />
+    <link href="~/css/carousel.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">DoorsAn</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                @await Component.InvokeAsync("CategoryMenu")
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            @if (User.IsInRole("admin"))
+            {
+                <ul class="nav navbar-nav pull-right">
+                    <li><a>Admin</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a></li>
+                </ul>
+            }
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+<div class="container">
+    @RenderBody()
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+    <!-- FOOTER -->
+    <footer>
+        <p class="pull-right"><a href="#">Вверх</a></p>
+        <p>&copy; 2017 Legenda</p>
+    </footer>
+</div>
+
+</body>
+</html>

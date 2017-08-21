@@ -1,0 +1,37 @@
+﻿@using DoorsAn1.ViewModels
+@model ProductListViewModel
+@{
+    ViewBag.Title = "Удаление товара";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Название</dt>
+        <dd>
+            @Model.Product.Name
+        </dd>
+
+        <dt>Категория</dt>
+        <dd>
+            @Model.Category.CategoryName
+        </dd>
+
+        <dt>Производитель</dt>
+        <dd>
+            @Model.Product.Producer
+        </dd>
+
+        <dt>Цена</dt>
+        <dd>
+            @Model.Product.Price
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Product" asp-action="Delete" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Удалить" />
+            </div>
+        </form>
+    </div>
+</div>
