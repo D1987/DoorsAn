@@ -14,6 +14,7 @@ namespace DoorsAn1.ViewModels
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         public string ReturnUrl { get; set; }

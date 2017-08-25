@@ -31,13 +31,14 @@ namespace DoorsAn1.Data
             //if (_context.Roles.Any(r => r.Name == "Administrator")) return;
 
             //Create the Administartor Role
-            //await _roleManager.CreateAsync(new IdentityRole("Administrator"));
+           // await _roleManager.CreateAsync(new IdentityRole("Administrator"));
 
             //Create the default Admin account and apply the Administrator role
-            string user = "admin@admin.by";
-            string password = "123456";
-            await _userManager.CreateAsync(new IdentityUser { UserName = user, PasswordHash = password });
-            await _userManager.AddToRoleAsync(await _userManager.FindByNameAsync(user), "Administrator");
+            string userName = "admin";
+            string password = "Zx123456";           
+            // добавляем пользователя
+            var result = await _userManager.CreateAsync(new IdentityUser { UserName = userName, Email = userName }, password);
+            await _userManager.AddToRoleAsync(await _userManager.FindByNameAsync(userName), "Administrator");
         }
     }
 }

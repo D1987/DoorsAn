@@ -10,6 +10,7 @@ using DoorsAn1.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoorsAn1.Data.Controllers
 {
@@ -29,6 +30,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         //List
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> ListOfProductsForAdmin(string view, int? category, string name, SortState sortOrder = SortState.NameAsc, int page = 1)
         {
             int pageSize = 5;
@@ -122,6 +124,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         //Add
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create(int? category, string name)
         {
             ProductListViewModel viewModel = new ProductListViewModel
@@ -132,6 +135,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create(Product product, ProductListViewModel fileImage)
         {
             //Product product = new Product { Name = pr.Name };
@@ -173,6 +177,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         //Edit
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id, int? category, string name)
         {
             if (id != null)
@@ -194,8 +199,20 @@ namespace DoorsAn1.Data.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Product product)
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> Edit(Product product, ProductListViewModel fileImage)
         {
+            if (fileImage.Image != null)
+            {
+                byte[] imageData;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(fileImage.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)fileImage.Image.Length);
+                }
+                // установка массива байтов
+                product.Image = imageData;
+            }
             product.CategoryId = product.Category.CategoryId;
             product.Category = null;
             _db.Products.Update(product);
@@ -206,6 +223,7 @@ namespace DoorsAn1.Data.Controllers
         //Delete
         [HttpGet]
         [ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> ConfirmDelete(int? id)
         {
             if (id != null)
@@ -225,6 +243,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id != null)

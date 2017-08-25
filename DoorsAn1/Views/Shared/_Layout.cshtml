@@ -34,14 +34,17 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            @if (User.IsInRole("admin"))
+            @if (User.Identity.IsAuthenticated)
             {
                 <ul class="nav navbar-nav pull-right">
-                    <li><a>Admin</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">Выйти</a></li>
+                    <li><a>@User.Identity.Name</a></li>
+                    <li><a asp-controller="Product" asp-action="ListOfProductsForAdmin">Личный кабинет</a></li>
                 </ul>
+                    <form class="nav navbar-nav pull-right" method="post" asp-controller="Account" asp-action="Logout">
+                        <input type="submit" value="Выйти" />
+                    </form>
             }
-        </div><!--/.nav-collapse -->
+</div><!--/.nav-collapse -->
     </div>
 </div>
 <div class="container">

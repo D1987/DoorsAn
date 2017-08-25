@@ -11,10 +11,10 @@
     <Content Include="wwwroot\css\signin.css" />
     <Content Include="wwwroot\css\StyleSheet.css" />
     <Content Include="wwwroot\css\StyleSheet1.css" />
+    <Content Include="wwwroot\Images\default.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
   <ItemGroup>
