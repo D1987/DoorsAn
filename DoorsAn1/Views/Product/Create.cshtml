@@ -2,6 +2,7 @@
 @using DoorsAn1.ViewModels
 @model ProductListViewModel
 @{
+    Layout = "_Layout";
     ViewBag.Title = "Добавление товара";
 }
 <form asp-action="create" asp-controller="product" enctype="multipart/form-data">
