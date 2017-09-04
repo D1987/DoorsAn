@@ -14,7 +14,8 @@ namespace DoorsAn1.Data.Models
 
         [Required]
         public int Price { get; set; }
-       
+
+        [Required]
         public string ShortDescription { get; set; }
 
         public string LongDescription { get; set; }

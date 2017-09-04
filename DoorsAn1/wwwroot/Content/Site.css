@@ -1,50 +1,108 @@
-﻿#cartButton{
-    margin-right:8px;
+﻿/*#cartButton {
+    margin-right: 8px;
 }
 
-nav{
-    padding:8px;
+nav {
+    padding: 8px;
 }
 
-.loginForm{
-    margin:10%;
+.loginForm {
+    margin: 10%;
 }
 
-.checkoutForm{
-     margin-top:5%;
+.checkoutForm {
+    margin-top: 5%;
 }
 
-.orderForm{
-     margin-top:5%;
-     border-radius:20px;
-     border-style:solid;
-     border-color:#2fa4e7;
+.orderForm {
+    margin-top: 5%;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #2fa4e7;
+}*/
+body {
+    padding-top: 65px;
 }
 
-a.remove{
-    text-decoration:none;
-}
-a.remove:hover{
-    color:blue;
+a.remove {
+    text-decoration: none;
 }
 
-.center_div{
+a:hover {
+    text-decoration: none;
+}
+
+.btn-space {
+    margin-right: 5px;
+}
+
+/*.center_div {
     margin: 0 auto;
-    width:80% /* value of your choice which suits your alignment */
+    width: 80% 
 }
 
-.marginTop{
-    margin-top:5%;
+.marginTop {
+    margin-top: 5%;
 }
 
-.marginTop1{
-    margin-top:2%;
+.marginTop1 {
+    margin-top: 2%;
 }
 
 .formPullRightButton {
-    margin-right:10px !important
+    margin-right: 10px !important
 }
 
 .carousel img {
     min-width: 100%;
+}*/
+
+
+.item-responsive {
+    position: relative; /* относительное позиционирование */
+}
+
+.item-responsive:before {
+    display: block; /* отображать элемент как блок */
+    content: ""; /* содержимое псевдоэлемента */
+    width: 100%; /* ширина элемента */
+}
+
+.item-16by9 {
+    padding-top: 56,25%; /* (9:16)*100% */
+}
+
+.item-responsive > .content {
+    position: absolute; /* абсолютное положение элемент */
+    /* положение элемента */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover !important;
+}
+
+
+/* При необходимости (для блоков, имеющих данные классы) */
+.item-4by3 {
+    padding-top: 75%; /* (3:4)*100% */
+}
+
+.item-2by1 {
+    padding-top: 50%; /* (1:2)*100% */
+}
+
+.item-1by1 {
+    padding-top: 100%; /* (1:1)*100% */
+}
+
+.discount {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FF0000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: white;
+    margin-top: 0 !important;
 }

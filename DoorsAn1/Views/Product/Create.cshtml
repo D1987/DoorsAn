@@ -27,6 +27,10 @@
         <input type="number" asp-for="@Model.Product.InStock" />
     </div>
     <div class="form-group">
+        <label asp-for="@Model.Product.ShortDescription" class="control-label">Описание</label>
+        <textarea asp-for="@Model.Product.ShortDescription" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
         <label asp-for="@Model.Product.LongDescription" class="control-label">Описание</label>        
         <textarea asp-for="@Model.Product.LongDescription" class="form-control"></textarea>
     </div>

@@ -1,35 +1,40 @@
-﻿@using System
-@model Product
-
-<a asp-action="Details" asp-controller="Product" asp-route-id="@Model.ProductId">       
-    <div class="col-sm-4 col-lg-4 col-md-4 fa-photo">
-        <div class="thumbnail">
-            @if (Model.Image != null)
-            {
-                <img class="img-responsive" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" alt="" />
-            }
-            else
-            {
-                <img class="img-responsive" src="~/Images/default.png" alt="">
-            }
-            <div class="caption">
-                <h3 class="pull-right">@Model.Price.ToString("c")</h3>               
-                <h3>
-                    @Model.Name
-                </h3>
-                <p>@Model.ShortDescription</p>
-                <p>
-                    @if (Model.Status.Equals(true))
-                    {
-                    <p>В наличии</p>}
-                    else
-                    {<p>В наличии нет</p> }
-                    </p>
-                    @if (Model.InStock != 0)
-                    {
-                        <h4>СКИДКА @Model.InStock%</h4>
-                    }
-                </div>
+﻿
+  <div class="col-sm-4 col-md-4 col-lg-4">
+      <div class="thumbnail">
+          <a asp-action="Details" asp-controller="Product" asp-route-id="@Model.ProductId">
+              <div class="item-responsive item-4by3">
+                  @if (Model.Image != null)
+                  {
+                      <div class="content" style="background: url(data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image)));">
+                          @if (Model.InStock != 0)
+                          {
+                            <div class="discount">-@Model.InStock%</div>
+                          }
+                      </div>
+                  }
+                  else
+                  {
+                      <div class="content" style="background: url(../../Images/default.png);">
+                          @if (Model.InStock != 0)
+                          {
+                              <div class="discount">-@Model.InStock%</div>
+                          }
+                      </div>
+                  }
+              </div>
+            <div class="caption">   
+                <p class="pull-right">@Model.Price.ToString("c")</p>
+                <h3>@Model.Name</h3>             
+                
+                @if (Model.Status.Equals(true))
+                {
+                    <p>В наличии</p>
+                }else
+                {
+                    <p>В наличии нет</p>
+                }               
             </div>
-        </div>
-    </a>
+          </a>
+      </div>
+</div>
+

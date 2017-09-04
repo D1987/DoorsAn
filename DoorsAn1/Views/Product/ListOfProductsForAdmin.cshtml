@@ -5,13 +5,14 @@
     ViewBag.Title = "Список товаров";
 }
 
-@if (User.Identity.IsAuthenticated)
-{
-    <a class="btn btn-primary" asp-action="Create">Добавить товар</a>
-}
+<div class="row">
+    <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
+        <a class="btn btn-info btn-add" asp-action="Create">Добавить товар</a>
+    </div>
+</div>
 
 <form method="get">
-    <div class="form-inline form-group">
+    <div class="form-inline form-group pull-right">
         <label class="control-label">Имя: </label>
         @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control" })
 
@@ -50,6 +51,7 @@
                 Статус
             </a>
         </th>
+        <th></th>
     </tr>
     </thead>
     @foreach (var item in Model.Products)
@@ -64,11 +66,9 @@
                 else
                 {<p>В наличии нет</p>
                 }</td>
-            <td>
-                <a class="btn btn-info btn-xs" asp-action="Details" asp-controller="Product" asp-route-id="@item.ProductId">Подробнее</a>               
-                <a class="btn btn-primary btn-xs" asp-action="Edit" asp-controller="Product" asp-route-id="@item.ProductId">Изменить</a>
-                <a class="btn btn-danger btn-xs" asp-action="Delete" asp-controller="Product" asp-route-id="@item.ProductId">Удалить</a>
-              
+            <td>                     
+                <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Product" asp-route-id="@item.ProductId"/>
+                <a class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" asp-action="Delete" asp-controller="Product" asp-route-id="@item.ProductId"/>              
             </td>
         </tr>
     }
@@ -97,4 +97,4 @@
         <i class="glyphicon glyphicon-chevron-right"></i>
     </a>
 }
-<<br>
+<br>
