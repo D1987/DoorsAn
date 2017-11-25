@@ -6,6 +6,7 @@ using DoorsAn1.Data.Models;
 using DoorsAn1.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DoorsAn1.Data
 {

@@ -10,6 +10,7 @@ using DoorsAn1.Data;
 using DoorsAn1.Data.Models;
 using DoorsAn1.Data.Repositories;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace DoorsAn1
 {
@@ -17,18 +18,16 @@ namespace DoorsAn1
     {
         private IConfigurationRoot _configurationRoot;
 
-        public Startup(IHostingEnvironment hostingEnvironment)
+        public Startup(IConfiguration configuration)
         {
-            _configurationRoot = new ConfigurationBuilder().SetBasePath(hostingEnvironment.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
+            Configuration = configuration;
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(opts => {
                 opts.Password.RequiredLength = 5;   // минимальная длина
@@ -40,7 +39,6 @@ namespace DoorsAn1
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
-
             // Add Database Initializer
             services.AddScoped<IDbInitializer, DbInitializer>();
 
@@ -49,7 +47,6 @@ namespace DoorsAn1
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +57,7 @@ namespace DoorsAn1
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseIdentity();
+            app.UseAuthentication();
 
             //dbInitializer.Initialize();
 
@@ -71,7 +68,6 @@ namespace DoorsAn1
                     defaults:new {Controller="Product", action="List"});
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
-
             
         }
     }
