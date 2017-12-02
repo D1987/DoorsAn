@@ -127,7 +127,7 @@ namespace DoorsAn1.Data.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Create(int? category, string name)
         {
-            ProductListViewModel viewModel = new ProductListViewModel
+            ProductViewModel viewModel = new ProductViewModel
             {
                 FilterViewModel = new FilterViewModel().FilterEditViewModel(_db.Categories.ToList(), category, name),
             };
@@ -136,23 +136,22 @@ namespace DoorsAn1.Data.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create(Product product, ProductListViewModel fileImage)
-        {
-            //Product product = new Product { Name = pr.Name };
-            if (fileImage.Image != null)
+        public async Task<IActionResult> Create(ProductViewModel productViewModel)
+        {            
+            if (productViewModel.Image != null)
             {
-                byte[] imageData;
+                byte[] imageData  = null;
                 // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(fileImage.Image.OpenReadStream()))
+                using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
-                    imageData = binaryReader.ReadBytes((int)fileImage.Image.Length);
+                    imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);
                 }
                 // установка массива байтов
-                product.Image = imageData;
+                productViewModel.Product.Image = imageData;
             }
-            product.CategoryId = product.Category.CategoryId;
-            product.Category = null;
-            _db.Products.Add(product);
+            productViewModel.Product.CategoryId = productViewModel.Product.Category.CategoryId;
+            productViewModel.Product.Category = null;
+            _db.Products.Add(productViewModel.Product);
             await _db.SaveChangesAsync();
             return RedirectToAction("ListOfProductsForAdmin");
         }
@@ -200,22 +199,22 @@ namespace DoorsAn1.Data.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(Product product, ProductListViewModel fileImage)
+        public async Task<IActionResult> Edit(ProductViewModel productViewModel)
         {
-            if (fileImage.Image != null)
+            if (productViewModel.Image != null)
             {
                 byte[] imageData;
                 // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(fileImage.Image.OpenReadStream()))
+                using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
-                    imageData = binaryReader.ReadBytes((int)fileImage.Image.Length);
+                    imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);
                 }
                 // установка массива байтов
-                product.Image = imageData;
+                productViewModel.Product.Image = imageData;
             }
-            product.CategoryId = product.Category.CategoryId;
-            product.Category = null;
-            _db.Products.Update(product);
+            productViewModel.Product.CategoryId = productViewModel.Product.Category.CategoryId;
+            productViewModel.Product.Category = null;
+            _db.Products.Update(productViewModel.Product);
             await _db.SaveChangesAsync();
             return RedirectToAction("ListOfProductsForAdmin");
         }
