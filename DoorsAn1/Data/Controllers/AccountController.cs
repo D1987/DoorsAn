@@ -12,24 +12,29 @@ namespace DoorsAn1.Data.Controllers
     //[Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;       
         private readonly SignInManager<IdentityUser> _signInManager;
 
         public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            _userManager = userManager;
+            _userManager = userManager;           
             _signInManager = signInManager;
         }
 
+        #region Login Get
         //[AllowAnonymous]
         [HttpGet]
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login(string returnUrl = null)
         {
             return View(new LoginViewModel()
             {
                 ReturnUrl = returnUrl
             });
         }
+
+        #endregion
+
+        #region Login Post
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -38,10 +43,11 @@ namespace DoorsAn1.Data.Controllers
         {
              if (ModelState.IsValid)
              {
-                 //var user = await _userManager.FindByNameAsync(loginViewModel.UserName);
-                 var result =
-                     await _signInManager.PasswordSignInAsync(loginViewModel.UserName, loginViewModel.Password, true, false);
-                if (/*user != null*/result.Succeeded)
+                var result = await _signInManager.PasswordSignInAsync(
+                         loginViewModel.UserName,
+                         loginViewModel.Password,
+                         true, false);
+                if (result.Succeeded)
                  {
                     // проверяем, принадлежит ли URL приложению
                      if (!String.IsNullOrEmpty(loginViewModel.ReturnUrl) && Url.IsLocalUrl(loginViewModel.ReturnUrl))
@@ -61,6 +67,10 @@ namespace DoorsAn1.Data.Controllers
              return View(loginViewModel);
         }
 
+        #endregion
+
+        #region Logout
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
@@ -68,5 +78,7 @@ namespace DoorsAn1.Data.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        #endregion
     }
 }

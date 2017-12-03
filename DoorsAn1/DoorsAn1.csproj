@@ -4,6 +4,22 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\IDbInitializer.cs" />
+    <Compile Remove="Data\Models\FileModel.cs" />
+    <Compile Remove="Data\Models\Login.cs" />
+    <Compile Remove="Data\Models\Role.cs" />
+    <Compile Remove="Data\Models\User.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Shared\LoginPartial.cshtml" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>

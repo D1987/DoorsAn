@@ -16,8 +16,6 @@ namespace DoorsAn1
 {
     public class Startup
     {
-        private IConfigurationRoot _configurationRoot;
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,7 +25,9 @@ namespace DoorsAn1
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc();
+            services.AddDbContext<AppDbContext>(options => options
+            .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(opts => {
                 opts.Password.RequiredLength = 5;   // минимальная длина
@@ -39,18 +39,15 @@ namespace DoorsAn1
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Add Database Initializer
-            services.AddScoped<IDbInitializer, DbInitializer>();
-
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-            services.AddMvc();
+            
             services.AddMemoryCache();
             services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IDbInitializer dbInitializer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
             app.UseDeveloperExceptionPage();
@@ -58,8 +55,7 @@ namespace DoorsAn1
             app.UseStaticFiles();
             app.UseSession();
             app.UseAuthentication();
-
-            //dbInitializer.Initialize();
+                      
 
             app.UseMvc(routes =>
             {
