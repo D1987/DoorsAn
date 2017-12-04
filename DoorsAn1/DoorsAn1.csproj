@@ -14,6 +14,8 @@
     <Compile Remove="Data\Models\Login.cs" />
     <Compile Remove="Data\Models\Role.cs" />
     <Compile Remove="Data\Models\User.cs" />
+    <Compile Remove="ViewModels\FileModel.cs" />
+    <Compile Remove="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using DoorsAn1.Data.interfaces;
 using DoorsAn1.Data.Models;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
@@ -29,9 +28,9 @@ namespace DoorsAn1.Data.Controllers
             _environment = environment;
         }
 
-        //List
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> ListOfProductsForAdmin(string view, int? category, string name, SortState sortOrder = SortState.NameAsc, int page = 1)
+        # region List for admin
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> ListForAdmin(string view, int? category, string name, SortState sortOrder = SortState.NameAsc, int page = 1)
         {
             int pageSize = 5;
 
@@ -83,7 +82,11 @@ namespace DoorsAn1.Data.Controllers
             return View(viewModel);
         }
 
-        public ViewResult List(string category)
+        #endregion
+
+        #region List for all
+
+        public ViewResult ListForAll(string category)
         {
             string _category = category;
             IEnumerable<Product> products;
@@ -123,8 +126,10 @@ namespace DoorsAn1.Data.Controllers
             return View(productListViewModel);
         }
 
-        //Add
-        [Authorize(Roles = "Administrator")]
+        #endregion
+
+        # region Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create(int? category, string name)
         {
             ProductViewModel viewModel = new ProductViewModel
@@ -135,7 +140,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create(ProductViewModel productViewModel)
         {            
             if (productViewModel.Image != null)
@@ -153,10 +158,12 @@ namespace DoorsAn1.Data.Controllers
             productViewModel.Product.Category = null;
             _db.Products.Add(productViewModel.Product);
             await _db.SaveChangesAsync();
-            return RedirectToAction("ListOfProductsForAdmin");
+            return RedirectToAction("ListForAdmin");
         }
 
-        //Details
+        #endregion
+
+        #region Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id != null)
@@ -175,8 +182,10 @@ namespace DoorsAn1.Data.Controllers
             return NotFound();
         }
 
-        //Edit
-        [Authorize(Roles = "Administrator")]
+        #endregion
+
+        # region Edit
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id, int? category, string name)
         {
             if (id != null)
@@ -198,7 +207,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(ProductViewModel productViewModel)
         {
             if (productViewModel.Image != null)
@@ -216,13 +225,15 @@ namespace DoorsAn1.Data.Controllers
             productViewModel.Product.Category = null;
             _db.Products.Update(productViewModel.Product);
             await _db.SaveChangesAsync();
-            return RedirectToAction("ListOfProductsForAdmin");
+            return RedirectToAction("ListForAdmin");
         }
 
-        //Delete
+        #endregion
+
+        #region Delete
         [HttpGet]
         [ActionName("Delete")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> ConfirmDelete(int? id)
         {
             if (id != null)
@@ -242,7 +253,7 @@ namespace DoorsAn1.Data.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id != null)
@@ -254,10 +265,12 @@ namespace DoorsAn1.Data.Controllers
                     //_db.Entry(Product).State = EntityState.Deleted;
                     _db.Products.Remove(product);
                     await _db.SaveChangesAsync();
-                    return RedirectToAction("ListOfProductsForAdmin");
+                    return RedirectToAction("ListForAdmin");
                 }
             }
             return NotFound();
         }
+
+        # endregion
     }
 }

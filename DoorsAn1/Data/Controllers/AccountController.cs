@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DoorsAn1.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using DoorsAn1.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace DoorsAn1.Data.Controllers
 {
@@ -56,7 +53,7 @@ namespace DoorsAn1.Data.Controllers
                      }
                      else
                      {
-                         return RedirectToAction("ListOfProductsForAdmin", "Product");
+                         return RedirectToAction("ListForAdmin", "Product");
                      }
                  }
                  else

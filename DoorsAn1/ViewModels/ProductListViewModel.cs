@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DoorsAn1.Data.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace DoorsAn1.ViewModels
 {
@@ -17,8 +13,6 @@ namespace DoorsAn1.ViewModels
         public PageViewModel PageViewModel { get; set; }
         public FilterViewModel FilterViewModel { get; set; }
         public SortViewModel SortViewModel { get; set; }
-
         public string Name { get; set; }
-        public IFormFile Image { get; set; }
     }
 }

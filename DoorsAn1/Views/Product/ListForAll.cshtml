@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
 
 @{
-    Layout = "_Layout";
+    Layout = "_LayoutProducts";
 }
 
 <div>
@@ -13,7 +13,7 @@
     @{
         foreach (Product product in Model.Products)
         {
-            @Html.Partial("ProductSummary", product)
+            @Html.Partial("Partial/ProductSummary", product)
         }
     }
 

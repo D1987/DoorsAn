@@ -1,7 +1,7 @@
 ﻿@using DoorsAn1.ViewModels
 @model ProductListViewModel
 @{
-    Layout = "_Layout";
+    Layout = "_LayoutProducts";
     ViewBag.Title = "Редактирование товара";
 }
 <form asp-action="edit" asp-controller="product" asp-route-id="@Model.Product.ProductId" enctype="multipart/form-data">
