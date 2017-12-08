@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model ProductListViewModel
 
 @{
     Layout = "_LayoutProducts";
@@ -8,6 +9,15 @@
     <h2>Все товары</h2>
 </div>
 
+<form method="get">
+    <div class="form-inline form-group pull-right">
+        <label class="control-label">Имя: </label>
+        @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control" })
+        
+        <input type="submit" value="Найти" class="btn btn-default" />
+    </div>
+</form>
+
 <h2>@Model.CurrentCategory</h2>
 
     @{
@@ -16,4 +26,28 @@
             @Html.Partial("Partial/ProductSummary", product)
         }
     }
+
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="ListForAll"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       asp-route-name="@(Model.FilterViewModel.SelectedName)"
+       asp-route-category="@(Model.FilterViewModel.SelectedCategory)"       
+       class="btn btn-secondary">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="ListForAll"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       asp-route-name="@(Model.FilterViewModel.SelectedName)"
+       asp-route-category="@(Model.FilterViewModel.SelectedCategory)"      
+       class="btn btn-secondary">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}
+<br>
 

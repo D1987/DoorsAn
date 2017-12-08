@@ -7,20 +7,18 @@ namespace DoorsAn1.Data.Models
     {
         public int ProductId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указано имя")]
         public string Name { get; set; }
 
         public string Producer { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указана цена")]
         public int Price { get; set; }
 
-        [Required]
-        public string ShortDescription { get; set; }
-
+        [Required(ErrorMessage = "Введите описание товара")]
         public string LongDescription { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Не указан статус")]
         public bool Status { get; set; }
 
         public byte[] Image { get; set; }

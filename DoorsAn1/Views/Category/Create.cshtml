@@ -1,0 +1,38 @@
+﻿@using DoorsAn1.ViewModels
+@model CategoryViewModel
+@{
+    Layout = "_LayoutProducts";
+    ViewBag.Title = "Добавление категории";
+}
+<form asp-action="create" asp-controller="category">
+    <div class="form-group">
+        <label asp-for="@Model.Category.CategoryName" class="control-label">Название</label>
+        <input type="text" asp-for="@Model.Category.CategoryName" class="form-control" />
+    </div>    
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-primary" />
+    </div>
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a>Название</a>
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Categories)
+    {
+        <tr>            
+            <td>@item.CategoryName</td>            
+        <td>
+            <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Category" asp-route-id="@item.CategoryId" />
+            <a class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" asp-action="Delete" asp-controller="Category" asp-route-id="@item.CategoryId" />
+        </td>
+    </tr>
+    }
+    </table>

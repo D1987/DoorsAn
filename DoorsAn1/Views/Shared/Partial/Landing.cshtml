@@ -69,22 +69,25 @@
     <section class="p-0" id="portfolio">
         <div class="container-fluid">
            <div class="row no-gutter "><!--popup-gallery-->
+             @foreach (var category in Model.Categories)
+             {
                <div class="col-lg-4 col-sm-6">
                     <a asp-controller="Product" asp-action="ListForAll"
-                                       asp-route-category="Кровля" class="portfolio-box" >
+                                       asp-route-category="@category.CategoryId" class="portfolio-box" >
                         <img class="img-fluid" src="~/lib/bootstrap/landing/img/categories/1.jpg" alt="">
                         <div class="portfolio-box-caption">
                            <div class="portfolio-box-caption-content">
                                 <div class="project-name text-faded">
-                                    Кровля
+                                    @category.CategoryName <!--change one variable-->
                                 </div>                                
                            </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+              }
+                <!--<div class="col-lg-4 col-sm-6">
                     <a asp-controller="Product" asp-action="ListForAll"
-                                       asp-route-category="Двери" class="portfolio-box" >
+                                       asp-route-category="2" class="portfolio-box" >
                         <img class="img-fluid" src="~/lib/bootstrap/landing/img/categories/2.jpg" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -97,7 +100,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <a asp-controller="Product" asp-action="ListForAll"
-                                       asp-route-category="Заборы" class="portfolio-box" >
+                                       asp-route-category="3" class="portfolio-box" >
                         <img class="img-fluid" src="~/lib/bootstrap/landing/img/categories/3.jpg" alt="">
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -152,7 +155,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>
