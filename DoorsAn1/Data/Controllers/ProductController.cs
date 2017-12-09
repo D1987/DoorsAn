@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ using DoorsAn1.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using System.Drawing;
 
 namespace DoorsAn1.Data.Controllers
 {
@@ -99,6 +98,15 @@ namespace DoorsAn1.Data.Controllers
             {
                 byte[] imageData  = null;
                 // считываем переданный файл в массив байтов
+                try
+                {
+                    var img = Image.FromStream(productViewModel.Image.OpenReadStream());                    
+                }
+                catch
+                {
+                    return BadRequest("Загружаемый файл не является изображением!"); 
+                }
+
                 using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
                     imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);
@@ -163,8 +171,17 @@ namespace DoorsAn1.Data.Controllers
         {
             if (productViewModel.Image != null)
             {
-                byte[] imageData;
+                byte[] imageData = null;
                 // считываем переданный файл в массив байтов
+                try
+                {
+                    var img = Image.FromStream(productViewModel.Image.OpenReadStream());
+                }
+                catch
+                {
+                    return BadRequest("Загружаемый файл не является изображением!");
+                }
+
                 using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
                     imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);

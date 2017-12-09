@@ -20,9 +20,13 @@
 
   <ItemGroup>
     <Content Remove="Views\Shared\LoginPartial.cshtml" />
+    <Content Remove="wwwroot\css\carousel.css" />
+    <Content Remove="wwwroot\css\signin.css" />
+    <Content Remove="wwwroot\css\StyleSheet.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CaptchaGen.NetCore" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
 
