@@ -5,6 +5,7 @@
     ViewBag.Title = "Редактирование категории";
 }
 
+<br/>
 <form asp-action="edit" asp-controller="category" asp-route-id="@Model.Category.CategoryId" class="form-horizontal" role="form">
     <input type="hidden" asp-for="@Model.Category.CategoryId" />    
     <div class="form-group">
@@ -18,8 +19,8 @@
         <label class="col-md-3 control-label"></label>
         <div class="col-md-8">
             <input type="submit" class="btn btn-primary" value="Сохранить">
-            <span></span>
-            <input type="reset" class="btn btn-default" value="Отмена">
+            <span></span>            
+            <a class="btn btn-default" asp-action="Create" asp-controller="Category">Отмена</a>
         </div>
     </div>
 </form>

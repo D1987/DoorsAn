@@ -4,36 +4,33 @@
 @{
     Layout = "_LayoutProducts";
 }
-
-<div class="container-wrapper">
+ 
+<div class="container">
     <h1>@Model.Product.Name</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                @if (Model.Product.Image != null)
-                {
-                    <img style='width:100%' alt="image" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Product.Image))" />
-                }
-                else
-                {
-                    <img style='width:100%' alt="image" src="../../Images/default.png" />
-                }
-            </div>
-            <h3>Подробнее</h3>
-            <div class="col-md-5">
-                <p>@Model.Product.LongDescription</p>
-                <p>
-                    <strong>Производитель</strong> : @Model.Product.Producer
-                </p>
-                <strong>Состояние</strong> : @(Model.Product.Status ? "В наличии" : "В наличии нет")
-                <h3>@Model.Product.Price.ToString("c")</h3>
-                @if (Model.Product.InStock != 0)
-                {
-                    <div>Товар на акции: @Model.Product.InStock%</div>
-                }
-                <br>
-            </div>
+    <div class="row">
+        <div class="col-md-5">
+            @if (Model.Product.Image != null)
+            {
+                <img style='width:100%' alt="image" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Product.Image))" />
+            }
+            else
+            {
+                <img style='width:100%' alt="image" src="../../Images/default.png" />
+            }
+        </div>
+        <h3>Подробнее</h3>
+        <div class="col-md-5">
+            <p>@Model.Product.LongDescription</p>
+            <p>
+                <strong>Производитель</strong> : @Model.Product.Producer
+            </p>
+            <strong>Состояние</strong> : @(Model.Product.Status ? "В наличии" : "В наличии нет")
+            <h3>@Model.Product.Price.ToString("c")</h3>
+            @if (Model.Product.InStock != 0)
+            {
+                <div>Товар на акции: @Model.Product.InStock%</div>
+            }
+            <br>
         </div>
     </div>
 </div>
-

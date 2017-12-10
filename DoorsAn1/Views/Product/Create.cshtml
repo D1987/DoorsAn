@@ -1,15 +1,11 @@
 ﻿@using DoorsAn1.ViewModels
 @model ProductViewModel
 @{
-    Layout = "_LayoutProducts";
+    Layout = "_LayoutPersonalCabinet";
     ViewBag.Title = "Добавление товара";
 }
 
-<div class="row">
-    <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
-        <a class="btn btn-info btn-add" asp-controller="Category" asp-action="Create">Добавить категорию</a>
-    </div>
-</div>
+<br/>
 
 <form asp-action="create" asp-controller="product" enctype="multipart/form-data">
     <div class="form-group">
@@ -51,7 +47,8 @@
         @Html.ValidationMessageFor(m => m.Product.Image)
     </div>
     <div class="form-group">
-        <input type="submit" value="Добавить" class="btn btn-primary" />
+        <input type="submit" value="Добавить" class="btn btn-primary btn-add" />
+        <a class="btn btn-default" asp-action="ListForAdmin" asp-controller="Product">Отмена</a>
     </div>
 </form>
 

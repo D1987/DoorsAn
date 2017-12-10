@@ -7,7 +7,7 @@ namespace DoorsAn1.Data.Models
     {
         public int CategoryId { get; set; }
         [Required(ErrorMessage = "Не указано имя")]
-        [StringLength(250, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 250 символов")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов")]
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public List<Product> Products { get; set; }

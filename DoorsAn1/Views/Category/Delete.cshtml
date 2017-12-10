@@ -14,6 +14,7 @@
         <form asp-controller="Category" asp-action="Delete" asp-route-id="@Model.Category.CategoryId" method="post">            
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Удалить" />
+                <a class="btn btn-default" asp-action="Create" asp-controller="Category">Отмена</a>           
             </div>
         </form>
     </div>
