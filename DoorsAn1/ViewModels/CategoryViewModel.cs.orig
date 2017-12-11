@@ -1,0 +1,23 @@
+<<<<<<< HEAD
+﻿using System;
+=======
+﻿using DoorsAn1.Data.Models;
+using System;
+>>>>>>> 3ad47873574375429e7a875ef5203bd383ee6106
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace DoorsAn1.ViewModels
+{
+    public class CategoryViewModel
+    {
+<<<<<<< HEAD
+        public string CategoryName { get; set; }
+        public string Description { get; set; }
+=======
+        public Category Category { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+>>>>>>> 3ad47873574375429e7a875ef5203bd383ee6106
+    }
+}

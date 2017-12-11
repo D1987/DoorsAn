@@ -1,0 +1,78 @@
+<<<<<<< HEAD
+﻿@using DoorsAn1.Data.Models
+@model Category
+=======
+﻿@using DoorsAn1.ViewModels
+@model CategoryViewModel
+>>>>>>> 3ad47873574375429e7a875ef5203bd383ee6106
+@{
+    Layout = "_LayoutProducts";
+    ViewBag.Title = "Добавление категории";
+}
+<<<<<<< HEAD
+<form asp-action="create" asp-controller="category">
+    <div class="form-group">
+        <label asp-for="@Model.CategoryName" class="control-label">Название</label>
+        <input type="text" asp-for="@Model.CategoryName" class="form-control" />
+    </div>       
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-primary" />
+    </div>
+</form>
+=======
+
+<br/>
+
+<form asp-action="create" asp-controller="category">
+    <div class="form-group">
+        <label asp-for="@Model.Category.CategoryName" class="control-label">Название</label>
+        <input type="text" asp-for="@Model.Category.CategoryName" class="form-control" />
+        <span class="field-validation-valid" asp-validation-for="@Model.Category.CategoryName"></span>
+    </div>    
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-primary btn-add" />
+        <a class="btn btn-default" asp-action="Create" asp-controller="Product">Отмена</a>
+    </div>
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a>Название</a>
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Categories)
+    {
+        <tr>            
+            <td>@item.CategoryName</td>            
+        <td>
+            <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Category" asp-route-id="@item.CategoryId" />
+            <a class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" asp-action="Delete" asp-controller="Category" asp-route-id="@item.CategoryId" />
+        </td>
+    </tr>
+    }
+    </table>
+
+@section scripts{
+
+    <environment names="Development">
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+                asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+                asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
+        </script>
+    </environment>
+}
+>>>>>>> 3ad47873574375429e7a875ef5203bd383ee6106

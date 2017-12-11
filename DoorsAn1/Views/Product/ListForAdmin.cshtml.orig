@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model ProductListViewModel
+@{
+    Layout = "_LayoutPersonalCabinet";
+    ViewBag.Title = "Список товаров";
+}
+
+<<<<<<< HEAD
+<div class="row">
+    <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
+        <a class="btn btn-info btn-add" asp-action="Create">Добавить товар</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
+        <a class="btn btn-info btn-add" asp-action="Create" asp-controller="Category">Добавить категорию</a>
+    </div>
+</div>
+
+<form method="get">
+    <div class="form-inline form-group pull-right">
+        <label class="control-label">Имя: </label>
+        @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Категория: </label>
+        @Html.DropDownList("category", Model.FilterViewModel.Categories as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+=======
+<br />
+>>>>>>> 3ad47873574375429e7a875ef5203bd383ee6106
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
+            <a class="btn btn-primary btn-add" asp-action="Create">Добавить товар</a>
+        </div>
+    </div>
+
+    <form method="get">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-6 pull-right">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control" })
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="submit" value="Найти">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-6 form-inline form-group pull-right">
+                @Html.DropDownList("category", Model.FilterViewModel.Categories as SelectList,
+                        htmlAttributes: new { @class = "form-control" })
+                <input type="submit" value="Найти" class="btn btn-info" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="ListForAdmin"
+                   asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                   asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                   asp-route-category="@(Model.FilterViewModel.SelectedCategory)">
+                    Название
+                </a>
+            </th>
+            <th>
+                <a asp-action="ListForAdmin"
+                   asp-route-sortOrder="@(Model.SortViewModel.CategorySort)"
+                   asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                   asp-route-category="@(Model.FilterViewModel.SelectedCategory)">
+                    Категория
+                </a>
+            </th>
+            <th>
+                <a asp-action="ListForAdmin"
+                   asp-route-sortOrder="@(Model.SortViewModel.StatusSort)"
+                   asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                   asp-route-category="@(Model.FilterViewModel.SelectedCategory)">
+                    Статус
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Category.CategoryName</td>
+            <td>
+                @if (item.Status.Equals(true))
+                {
+                    <p>В наличии</p>
+                }
+                else
+                {<p>В наличии нет</p>
+                }
+            </td>
+            <td>
+                <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Product" asp-route-id="@item.ProductId" />
+                <a class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" asp-action="Delete" asp-controller="Product" asp-route-id="@item.ProductId" />
+            </td>
+        </tr>
+    }
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            @if (Model.PageViewModel.HasNextPage)
+            {
+                <a asp-action="ListForAdmin"
+                   asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+                   asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                   asp-route-category="@(Model.FilterViewModel.SelectedCategory)"
+                   asp-route-sortorder="@(Model.SortViewModel.Current)"
+                   class="page-link">Вперед</a>
+            }
+        </li>
+    </ul>
+</nav>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            @if (Model.PageViewModel.HasPreviousPage)
+            {
+                <a asp-action="ListForAdmin"
+                   asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+                   asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                   asp-route-category="@(Model.FilterViewModel.SelectedCategory)"
+                   asp-route-sortorder="@(Model.SortViewModel.Current)"
+                   class="page-link">Назад</a>
+            }
+        </li>
+    </ul>
+</nav>
+<br />
