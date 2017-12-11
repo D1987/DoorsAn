@@ -96,6 +96,7 @@ a:hover {
     padding-top: 100%; /* (1:1)*100% */
 }
 
+/*discount*/
 .discount {
     position: absolute;
     top: 0;
@@ -105,4 +106,24 @@ a:hover {
     font-size: 20px;
     color: white;
     margin-top: 0 !important;
+}
+
+/*back to up*/ 
+.back-to-top {
+    background: none;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+    display: none;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ff9000;
+}
+
+.back-to-top i {
+    font-size: 60px;
 }

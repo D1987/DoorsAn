@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>DoorsAn</title>
+    <title>DoorsAn</title>   
 
     <!-- Bootstrap core CSS -->
     <link href="~/lib/bootstrap/landing/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -48,15 +48,18 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#contact">Контакты</a>
                     </li>
-                </ul>
+                </ul>             
+
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <ul class="navbar-nav ml-auto pull-right">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger">@User.Identity.Name</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" asp-controller="Product" asp-action="ListForAdmin">Личный кабинет</a></li>
-                    </ul>
                     <form class="nav navbar-nav pull-right" method="post" asp-controller="Account" asp-action="Logout">
-                        <input type="submit" value="Выйти" />
+                        <ul class="navbar-nav ml-auto pull-right">                            
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" asp-controller="Product" asp-action="ListForAdmin">Личный кабинет</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger">@User.Identity.Name</a></li>
+                            <li class="nav-item">
+                                <button type="submit" class="js-scroll-trigger btn btn-link" style="cursor:pointer">Выйти</button>
+                            </li>                       
+                        </ul>
                     </form>
                 }
             </div>

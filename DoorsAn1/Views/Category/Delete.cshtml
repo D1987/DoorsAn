@@ -1,0 +1,21 @@
+﻿@using DoorsAn1.ViewModels
+@model CategoryViewModel
+@{
+    Layout = "_LayoutProducts";
+    ViewBag.Title = "Удаление категории";
+}
+
+<div>   
+    <div class="container-wrapper">
+        <h1>@Model.Category.CategoryName</h1>
+        Все товары данной категории будут удалены
+    </div>
+    <div>
+        <form asp-controller="Category" asp-action="Delete" asp-route-id="@Model.Category.CategoryId" method="post">            
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Удалить" />
+                <a class="btn btn-default" asp-action="Create" asp-controller="Category">Отмена</a>           
+            </div>
+        </form>
+    </div>
+</div>

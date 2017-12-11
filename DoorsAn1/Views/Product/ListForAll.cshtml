@@ -1,19 +1,72 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model ProductListViewModel
 
 @{
     Layout = "_LayoutProducts";
 }
 
 <div>
-    <h2>Все товары</h2>
+    <h2>@Model.CurrentCategory</h2>
 </div>
 
-<h2>@Model.CurrentCategory</h2>
+<form method="get">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-6 pull-right">   
+                <h4>Введите название товара</h4>
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">                        
+                        @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="submit" value="Найти">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-    @{
-        foreach (Product product in Model.Products)
-        {
-            @Html.Partial("Partial/ProductSummary", product)
-        }
+<br />
+
+@{
+    foreach (Product product in Model.Products)
+    {
+        @Html.Partial("Partial/ProductSummary", product)
     }
+}
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            @if (Model.PageViewModel.HasNextPage)
+            {
+                <a asp-action="ListForAdmin"
+                   asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+                   asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                   asp-route-category="@(Model.FilterViewModel.SelectedCategory)"
+                   asp-route-sortorder="@(Model.SortViewModel.Current)"
+                   class="page-link">Вперед</a>
+            }
+        </li>
+    </ul>
+</nav>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            @if (Model.PageViewModel.HasPreviousPage)
+            {
+                <a asp-action="ListForAdmin"
+                   asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+                   asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                   asp-route-category="@(Model.FilterViewModel.SelectedCategory)"
+                   asp-route-sortorder="@(Model.SortViewModel.Current)"
+                   class="page-link">Назад</a>
+            }
+        </li>
+    </ul>
+</nav><br>
 

@@ -7,11 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DoorsAn</title>
-
-    <!--<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />-->
+    
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/css/validation.css" rel="stylesheet" /> 
-
     
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -40,20 +38,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    @await Component.InvokeAsync("CategoryMenu")                   
+                    @await Component.InvokeAsync("CategoryMenu")
+                    <li><a asp-controller="Category" asp-action="Create">Категории</a></li>
                 </ul>
-               @if (User.Identity.IsAuthenticated)
-               {
-                <form class="nav navbar-nav pull-right" method="post" asp-controller="Account" asp-action="Logout">
-                    <ul class="nav navbar-nav pull-right">
-                        <li><a>@User.Identity.Name</a></li>
-                        <li><a asp-controller="Product" asp-action="ListForAdmin">Личный кабинет</a></li>
-                        <li>
-                            <button type="submit" class="btn btn-link navbar-btn navbar-link">Выйти</button>
-                        </li>
-                    </ul>
-                </form>
-               }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form class="nav navbar-nav pull-right" method="post" asp-controller="Account" asp-action="Logout">
+                        <ul class="nav navbar-nav pull-right">
+                            <li><a>@User.Identity.Name</a></li>                            
+                            <li>
+                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Выйти</button>
+                            </li>                           
+                        </ul>
+                    </form>
+                }
             </div><!--/.nav-collapse -->
         </div>
     </div>
@@ -63,17 +61,16 @@
     
     <div class="container">
         <hr />
-        <footer> 
+        <footer>
             <a href="#" align="center" class='back-to-top'>
                 <i class="fa fa-arrow-circle-up"></i>
             </a>
             <p>&copy; 2017 - Legenda</p>
         </footer>
     </div>
-    
+
     <!--for back to up-->
     <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" media"screen">
-
 
         <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>

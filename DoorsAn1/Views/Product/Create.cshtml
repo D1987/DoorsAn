@@ -1,17 +1,21 @@
 ﻿@using DoorsAn1.ViewModels
 @model ProductViewModel
 @{
-    Layout = "_LayoutProducts";
+    Layout = "_LayoutPersonalCabinet";
     ViewBag.Title = "Добавление товара";
 }
+
+<br/>
+
 <form asp-action="create" asp-controller="product" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="@Model.Product.Name" class="control-label">Название</label>
         <input type="text" asp-for="@Model.Product.Name" class="form-control" />
+        <span class="field-validation-valid" asp-validation-for="@Model.Product.Name"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.Product.Category.CategoryId" class="control-label">Категория</label>
-        <select asp-for="@Model.Product.Category.CategoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>        
+        <select asp-for="@Model.Product.Category.CategoryId" asp-items="@Model.FilterViewModel.Categories" class="form-control"></select>
     </div>
     <div class="form-group">
         <label asp-for="@Model.Product.Producer" class="control-label">Производитель</label>
@@ -20,24 +24,49 @@
     <div class="form-group">
         <label asp-for="@Model.Product.Price" class="control-label">Цена</label>
         <input type="number" asp-for="@Model.Product.Price" class="form-control" />
+        <span class="field-validation-valid" asp-validation-for="@Model.Product.Price"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.Product.InStock" class="control-label">Акция</label>
-        <input type="number" asp-for="@Model.Product.InStock" />
-    </div>  
+        <input type="number" asp-for="@Model.Product.InStock" class="form-control" value="0"/>
+    </div>   
     <div class="form-group">
         <label asp-for="@Model.Product.LongDescription" class="control-label">Описание</label>        
         <textarea asp-for="@Model.Product.LongDescription" class="form-control"></textarea>
+        <span class="field-validation-valid" asp-validation-for="@Model.Product.LongDescription"></span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.Product.Status" class="control-label">Статус</label>
         <input type="checkbox" asp-for="@Model.Product.Status"/>
+        <span class="field-validation-valid" asp-validation-for="@Model.Product.Status"></span> <!--doesn't work-->
     </div>
     <div class="form-group">
         <label>Загрузить изображение</label>
-        <input type="file" name="Image" class="form-control"/>
+        <input type="file" name="Image" asp-for="@Model.Product.Image" class="form-control"/>
+        <span asp-validation-for="@Model.Product.Image" class="field-validation-valid"></span>
+        @Html.ValidationMessageFor(m => m.Product.Image)
     </div>
     <div class="form-group">
-        <input type="submit" value="Добавить" class="btn btn-primary" />
+        <input type="submit" value="Добавить" class="btn btn-primary btn-add" />
+        <a class="btn btn-default" asp-action="ListForAdmin" asp-controller="Product">Отмена</a>
     </div>
 </form>
+
+
+@section scripts{
+
+    <environment names="Development">
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+                asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+                asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
+        </script>
+    </environment>
+}

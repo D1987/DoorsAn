@@ -8,13 +8,13 @@ namespace DoorsAn1.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Логин")]
+        [Required(ErrorMessage = "Введите имя!")]
+        //[Display(Name = "Логин")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите пароль!")]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        //[Display(Name = "Пароль")]
         public string Password { get; set; }
 
         public string ReturnUrl { get; set; }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
@@ -10,6 +9,7 @@ using DoorsAn1.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.Drawing;
 
 namespace DoorsAn1.Data.Controllers
 {
@@ -33,102 +33,53 @@ namespace DoorsAn1.Data.Controllers
         public async Task<IActionResult> ListForAdmin(string view, int? category, string name, SortState sortOrder = SortState.NameAsc, int page = 1)
         {
             int pageSize = 5;
+            IQueryable<Product> products = _db.Products.Include(p => p.Category);
 
             //фильтрация
-            IQueryable<Product> products = _db.Products.Include(p => p.Category);
-            if (category != null && category != 0)
-            {
-                products = products.Where(p => p.CategoryId == category);
-            }
-            if (!String.IsNullOrEmpty(name))
-            {
-                products = _db.Products.Where(p => p.Name.Contains(name));
-            }
-
+            products = Filter(products, category, name);
             // сортировка
-            switch (sortOrder)
-            {
-                case SortState.NameDesc:
-                    products = products.OrderByDescending(s => s.Name);
-                    break;
-                case SortState.CategoryAsc:
-                    products = products.OrderBy(s => s.Category.CategoryName);
-                    break;
-                case SortState.CategoryDesc:
-                    products = products.OrderByDescending(s => s.Category.CategoryName);
-                    break;
-                case SortState.StatusAsc:
-                    products = products.OrderBy(s => s.Status);
-                    break;
-                case SortState.StatusDesc:
-                    products = products.OrderByDescending(s => s.Status);
-                    break;
-                default:
-                    products = products.OrderBy(s => s.Name);
-                    break;
-            }
+            products = Sort(products, sortOrder);
             // пагинация
             var count = await products.CountAsync();
             var items = await products.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             // формируем модель представления
-            ProductListViewModel viewModel = new ProductListViewModel
+            var productListViewModel = new ProductListViewModel
             {
                 PageViewModel = new PageViewModel(count, page, pageSize),
                 SortViewModel = new SortViewModel(sortOrder),
                 FilterViewModel = new FilterViewModel(_db.Categories.ToList(), category, name),
                 Products = items
-            };
-            return View(viewModel);
+            };           
+            return View(productListViewModel);
         }
-
+     
         #endregion
 
         #region List for all
+       public async Task<IActionResult> ListForAll(string view, int? category, string name, int page = 1)
+       {
+           int pageSize = 9;
+           IQueryable<Product> products = _db.Products.Include(p => p.Category);
+           //фильтрация
+           products = Filter(products, category, name);
+           // пагинация
+           var count = await products.CountAsync();
+           var items = await products.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
-        public ViewResult ListForAll(string category)
-        {
-            string _category = category;
-            IEnumerable<Product> products;
-            string currentCategory = string.Empty;
-
-            if (string.IsNullOrEmpty(category))
-            {
-                products = _productRepository.Products.OrderBy(n => n.ProductId);
-            }
-            else
-            {
-                if (string.Equals("Кровля",_category, StringComparison.OrdinalIgnoreCase))
-                {
-                    products = _productRepository.Products.Where(p => p.Category
-                    .CategoryName.Equals("Кровля")).OrderBy(n => n.Name);
-                }
-                else if (string.Equals("Двери", _category, StringComparison.OrdinalIgnoreCase))
-                {
-                    products = _productRepository.Products.Where(p => p.Category
-                        .CategoryName.Equals("Двери")).OrderBy(n => n.Name);
-                }
-                else
-                {
-                    products = _productRepository.Products.Where(p => p.Category
-                        .CategoryName.Equals("Заборы")).OrderBy(n => n.Name);
-                }
-
-                currentCategory = _category;
-            }
-
-            var productListViewModel = new ProductListViewModel
-            {
-                Products = products,
-                CurrentCategory = currentCategory
-            };
-           
-            return View(productListViewModel);
-        }
+           // формируем модель представления
+           var productListViewModel = new ProductListViewModel
+           {
+               PageViewModel = new PageViewModel(count, page, pageSize),               
+               FilterViewModel = new FilterViewModel(_db.Categories.ToList(), category, name),
+               Products = items
+           };
+           return View(productListViewModel);
+       }
 
         #endregion
 
-        # region Create
+        #region Create
         [Authorize(Roles = "admin")]
         public IActionResult Create(int? category, string name)
         {
@@ -147,6 +98,15 @@ namespace DoorsAn1.Data.Controllers
             {
                 byte[] imageData  = null;
                 // считываем переданный файл в массив байтов
+                try
+                {
+                    var img = Image.FromStream(productViewModel.Image.OpenReadStream());                    
+                }
+                catch
+                {
+                    return BadRequest("Загружаемый файл не является изображением!"); 
+                }
+
                 using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
                     imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);
@@ -198,7 +158,6 @@ namespace DoorsAn1.Data.Controllers
                         FilterViewModel = new FilterViewModel().FilterEditViewModel(_db.Categories.ToList(), category, name),
                         Product = product,
                         Category = await _db.Categories.FirstOrDefaultAsync(p => p.CategoryId == product.CategoryId)
-
                     };
                     return View(viewModel);
                 }
@@ -212,8 +171,17 @@ namespace DoorsAn1.Data.Controllers
         {
             if (productViewModel.Image != null)
             {
-                byte[] imageData;
+                byte[] imageData = null;
                 // считываем переданный файл в массив байтов
+                try
+                {
+                    var img = Image.FromStream(productViewModel.Image.OpenReadStream());
+                }
+                catch
+                {
+                    return BadRequest("Загружаемый файл не является изображением!");
+                }
+
                 using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
                     imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);
@@ -223,7 +191,7 @@ namespace DoorsAn1.Data.Controllers
             }
             productViewModel.Product.CategoryId = productViewModel.Product.Category.CategoryId;
             productViewModel.Product.Category = null;
-            _db.Products.Update(productViewModel.Product);
+            _db.Products.Update(productViewModel.Product);            
             await _db.SaveChangesAsync();
             return RedirectToAction("ListForAdmin");
         }
@@ -271,6 +239,51 @@ namespace DoorsAn1.Data.Controllers
             return NotFound();
         }
 
-        # endregion
+        #endregion
+
+        #region Sort
+        private IQueryable<Product> Sort(IQueryable<Product> products, SortState sortOrder)
+        {
+            switch (sortOrder)
+            {
+                case SortState.NameDesc:
+                    products = products.OrderByDescending(s => s.Name);
+                    break;
+                case SortState.CategoryAsc:
+                    products = products.OrderBy(s => s.Category.CategoryName);
+                    break;
+                case SortState.CategoryDesc:
+                    products = products.OrderByDescending(s => s.Category.CategoryName);
+                    break;
+                case SortState.StatusAsc:
+                    products = products.OrderBy(s => s.Status);
+                    break;
+                case SortState.StatusDesc:
+                    products = products.OrderByDescending(s => s.Status);
+                    break;
+                default:
+                    products = products.OrderBy(s => s.Name);
+                    break;
+            }
+            return products;
+        }
+        #endregion
+
+        # region Filter
+        private IQueryable<Product> Filter(IQueryable<Product> products, int? category, string name)
+        {
+            if (category != null && category != 0)
+            {
+                products = products.Where(p => p.CategoryId == category);
+            }
+            if (!String.IsNullOrEmpty(name))
+            {
+                products = _db.Products.Where(p => p.Name.Contains(name));
+            }
+
+            return products;
+        }
+        #endregion
+
     }
 }
