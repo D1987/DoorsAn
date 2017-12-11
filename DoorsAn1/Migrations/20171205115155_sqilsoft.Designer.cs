@@ -11,9 +11,10 @@ using System;
 namespace DoorsAn1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171205115155_sqilsoft")]
+    partial class sqilsoft
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,16 +46,17 @@ namespace DoorsAn1.Migrations
 
                     b.Property<int>("InStock");
 
-                    b.Property<string>("LongDescription")
-                        .IsRequired();
+                    b.Property<string>("LongDescription");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                        .IsRequired();
 
                     b.Property<int>("Price");
 
                     b.Property<string>("Producer");
+
+                    b.Property<string>("ShortDescription")
+                        .IsRequired();
 
                     b.Property<bool>("Status");
 
