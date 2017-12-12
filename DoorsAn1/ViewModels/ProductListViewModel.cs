@@ -14,10 +14,6 @@ namespace DoorsAn1.ViewModels
         public PageViewModel PageViewModel { get; set; }
         public FilterViewModel FilterViewModel { get; set; }
         public SortViewModel SortViewModel { get; set; }
-        //public IFormFile Image { get; set; }
-
-
-
-        //public string Name { get; set; }
+        public int ProductId { get; set; }
     }
 }

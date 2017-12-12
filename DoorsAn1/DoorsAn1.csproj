@@ -14,12 +14,13 @@
     <Compile Remove="Data\Models\Login.cs" />
     <Compile Remove="Data\Models\Role.cs" />
     <Compile Remove="Data\Models\User.cs" />
-    <Compile Remove="ViewModels\CategoryViewModel.cs" />
     <Compile Remove="ViewModels\FileModel.cs" />
     <Compile Remove="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Category\Delete.cshtml" />
+    <Content Remove="Views\Product\Delete.cshtml" />
     <Content Remove="Views\Shared\LoginPartial.cshtml" />
     <Content Remove="wwwroot\css\carousel.css" />
     <Content Remove="wwwroot\css\signin.css" />

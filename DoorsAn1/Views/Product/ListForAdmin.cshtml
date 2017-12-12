@@ -14,12 +14,6 @@
         </div>
     </div>
 
-<div class="row">
-    <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
-        <a class="btn btn-info btn-add" asp-action="Create" asp-controller="Category">Добавить категорию</a>
-    </div>
-</div>
-
     <form method="get">
         <div class="container">
             <div class="row ">
@@ -91,8 +85,8 @@
                 }
             </td>
             <td>
-                <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Product" asp-route-id="@item.ProductId" />
-                <a class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" asp-action="Delete" asp-controller="Product" asp-route-id="@item.ProductId" />
+                <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Product" asp-route-id="@item.ProductId"></a>
+                @await Html.PartialAsync("Partial/Product/Delete", new ProductListViewModel { ProductId = @item.ProductId})  
             </td>
         </tr>
     }

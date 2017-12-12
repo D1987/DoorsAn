@@ -127,3 +127,8 @@ a:hover {
 .back-to-top i {
     font-size: 60px;
 }
+
+/*check a file's extension*/
+#validation {
+    color:red;
+}

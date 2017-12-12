@@ -35,8 +35,9 @@
         <tr>            
             <td>@item.CategoryName</td>            
         <td>
-            <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Category" asp-route-id="@item.CategoryId" />
-            <a class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" asp-action="Delete" asp-controller="Category" asp-route-id="@item.CategoryId" />
+            <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Category" asp-route-id="@item.CategoryId"></a>
+            @await Html.PartialAsync("Partial/Category/Delete", new CategoryViewModel { CategoryId = @item.CategoryId })
+            
         </td>
     </tr>
     }

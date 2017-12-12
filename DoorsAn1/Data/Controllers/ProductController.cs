@@ -97,16 +97,7 @@ namespace DoorsAn1.Data.Controllers
             if (productViewModel.Image != null)
             {
                 byte[] imageData  = null;
-                // считываем переданный файл в массив байтов
-                try
-                {
-                    var img = Image.FromStream(productViewModel.Image.OpenReadStream());                    
-                }
-                catch
-                {
-                    return BadRequest("Загружаемый файл не является изображением!"); 
-                }
-
+                // считываем переданный файл в массив байтов  
                 using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
                     imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);
@@ -172,16 +163,7 @@ namespace DoorsAn1.Data.Controllers
             if (productViewModel.Image != null)
             {
                 byte[] imageData = null;
-                // считываем переданный файл в массив байтов
-                try
-                {
-                    var img = Image.FromStream(productViewModel.Image.OpenReadStream());
-                }
-                catch
-                {
-                    return BadRequest("Загружаемый файл не является изображением!");
-                }
-
+                // считываем переданный файл в массив байтов  
                 using (var binaryReader = new BinaryReader(productViewModel.Image.OpenReadStream()))
                 {
                     imageData = binaryReader.ReadBytes((int)productViewModel.Image.Length);
