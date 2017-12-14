@@ -25,10 +25,10 @@
                 <strong>Производитель</strong> : @Model.Product.Producer
             </p>
             <strong>Состояние</strong> : @(Model.Product.Status ? "В наличии" : "В наличии нет")
-            <h3>@Model.Product.Price.ToString("c")</h3>
+            <h3>@Model.Product.Price руб</h3>
             @if (Model.Product.InStock != 0)
             {
-                <div>Товар на акции: @Model.Product.InStock%</div>
+                <div id="discount">@Model.Product.InStock% скидка</div>
             }
             <br>
         </div>

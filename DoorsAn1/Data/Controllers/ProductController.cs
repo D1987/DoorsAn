@@ -32,7 +32,7 @@ namespace DoorsAn1.Data.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> ListForAdmin(string view, int? category, string name, SortState sortOrder = SortState.NameAsc, int page = 1)
         {
-            int pageSize = 5;
+            int pageSize = 10;
             IQueryable<Product> products = _db.Products.Include(p => p.Category);
 
             //фильтрация
@@ -59,7 +59,7 @@ namespace DoorsAn1.Data.Controllers
         #region List for all
        public async Task<IActionResult> ListForAll(string view, int? category, string name, int page = 1)
        {
-           int pageSize = 9;
+           int pageSize = 12;
            IQueryable<Product> products = _db.Products.Include(p => p.Category);
            //фильтрация
            products = Filter(products, category, name);
@@ -261,6 +261,11 @@ namespace DoorsAn1.Data.Controllers
             if (!String.IsNullOrEmpty(name))
             {
                 products = _db.Products.Where(p => p.Name.Contains(name));
+            }
+
+            if (products.Count() == 0) {
+
+                ModelState.AddModelError("CustomError", "Ничего не найдено!");
             }
 
             return products;

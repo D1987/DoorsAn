@@ -1,0 +1,33 @@
+﻿/*index page*/
+#logout {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    color: rgba(255,255,255,.7);
+    border: hidden;
+}
+
+/*list of products*/
+#title {
+    color: #139A4D;
+}
+
+#price {
+    color: #139A4D;
+    font-size: 1.875rem;
+    font-weight: 700;
+}
+
+#statusTrue {
+    color: #139A4D;
+}
+
+#statusFalse {
+    color:red;
+}
+
+/*detail page*/
+#discount {
+    font-size: 30px;
+    color:#139A4D;
+}

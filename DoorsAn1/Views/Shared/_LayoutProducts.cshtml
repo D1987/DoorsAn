@@ -11,7 +11,7 @@
     <!--<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />-->
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/css/validation.css" rel="stylesheet" /> 
-
+    <link href="~/Content/custom.css" rel="stylesheet" />
     
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -39,9 +39,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    @await Component.InvokeAsync("CategoryMenu")                   
-                </ul>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>                    
+                        @await Component.InvokeAsync("CategoryMenu")                    
+                    </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li><a>гор. 65-70-42</a></li>
+                    <li><a>МТС 8(029) 887-54-28</a></li>
+                    <li><a>Velcome 8(029) 692-53-65</a></li>
+                </ul>                
+
                @if (User.Identity.IsAuthenticated)
                {
                 <form class="nav navbar-nav pull-right" method="post" asp-controller="Account" asp-action="Logout">
@@ -64,18 +70,12 @@
     <div class="container">
         <hr />
         <footer> 
-            <a href="#" align="center" class='back-to-top'>
-                <i class="fa fa-arrow-circle-up"></i>
-            </a>
+            <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
             <p>&copy; @DateTime.Now.Year - Legenda</p>
         </footer>
     </div>
     
-    <!--for back to up-->
-    <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" media"screen">
-
-
-        <environment include="Development">
+    <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>

@@ -20,7 +20,7 @@
                 <div class="col-md-6 pull-right">
                     <div id="custom-search-input">
                         <div class="input-group col-md-12">
-                            @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { @class = "form-control" })
+                            @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { placeholder= "Поиск по названию", @class = "form-control" })
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="submit" value="Найти">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -91,6 +91,9 @@
         </tr>
     }
 </table>
+
+@Html.ValidationMessage("CustomError", new { @style = "color:black" })
+
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li class="page-item">

@@ -1,7 +1,7 @@
 ﻿@using DoorsAn1.ViewModels
 @model ProductListViewModel
 @{
-    Layout = "_LayoutProducts";
+    Layout = "_LayoutPersonalCabinet";
     ViewBag.Title = "Редактирование товара";
 }
 <div class="container">
@@ -30,63 +30,55 @@
             <form asp-action="edit" asp-controller="product" asp-route-id="@Model.Product.ProductId" enctype="multipart/form-data" class="form-horizontal" role="form">
                 <input type="hidden" asp-for="@Model.Product.ProductId" /> 
                 <input type="hidden" asp-for="@Model.Product.Image" /> 
-                <div class="form-group">
-                    <label asp-for="@Model.Product.Name" class="col-lg-3 control-label">Название:</label>
+                <div class="form-group">                    
                     <div class="col-lg-8">
-                        <input asp-for="@Model.Product.Name" class="form-control" type="text">
+                        <input asp-for="@Model.Product.Name" class="form-control" type="text" placeholder="Название">
                         <span class="field-validation-valid" asp-validation-for="@Model.Product.Name"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Product.Category.CategoryId" class="col-lg-3 control-label">Категория:</label>
+                <div class="form-group">                   
                     <div class="col-lg-8">
                         <div class="ui-select">
                             <select asp-for="@Model.Product.Category.CategoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Product.Producer" class="col-lg-3 control-label">Производитель:</label>
+                <div class="form-group">                    
                     <div class="col-lg-8">
-                        <input asp-for="@Model.Product.Producer" class="form-control" type="text">
+                        <input asp-for="@Model.Product.Producer" class="form-control" type="text" placeholder="Производитель">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Product.Price" class="col-lg-3 control-label">Цена:</label>
+                <div class="form-group">                    
                     <div class="col-lg-8">
-                        <input asp-for="@Model.Product.Price" class="form-control" type="number">
+                        <input asp-for="@Model.Product.Price" class="form-control" type="number" placeholder="Цена">
                         <span class="field-validation-valid" asp-validation-for="@Model.Product.Price"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Product.InStock" class="col-lg-3 control-label">Акция:</label>
+                <div class="form-group">                   
                     <div class="col-lg-8">
-                        <input asp-for="@Model.Product.InStock" class="form-control" type="number">
+                        <input asp-for="@Model.Product.InStock" class="form-control" type="number" placeholder="Акция">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Product.LongDescription" class="col-md-3 control-label">Описание:</label>
+                <div class="form-group">                   
                     <div class="col-md-8">
-                        <textarea asp-for="@Model.Product.LongDescription" class="form-control" type="text"></textarea>
+                        <textarea asp-for="@Model.Product.LongDescription" class="form-control" type="text" placeholder="Описание"></textarea>
                         <span class="field-validation-valid" asp-validation-for="@Model.Product.LongDescription"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Product.Status" class="col-md-3 control-label">Статус:</label>
+                <div class="form-group">                    
                     <div class="col-md-8">
+                        <label asp-for="@Model.Product.Status">Статус:</label>
                         <input type="checkbox" asp-for="@Model.Product.Status" />
                         <span class="field-validation-valid" asp-validation-for="@Model.Product.Status"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Загрузить изображение:</label>
+                <div class="form-group">                    
                     <div class="col-md-8">
                         <input type="file" name="Image" class="form-control" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-8">
+                <div class="form-group">                    
+                    <div class="col-md-5">
                         <input type="submit" class="btn btn-primary" value="Сохранить">
                         <span></span>
                         <a class="btn btn-default" asp-action="ListForAdmin" asp-controller="Product">Отмена</a>

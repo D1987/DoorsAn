@@ -8,15 +8,13 @@
 <br/>
 <form asp-action="edit" asp-controller="category" asp-route-id="@Model.Category.CategoryId" class="form-horizontal" role="form">
     <input type="hidden" asp-for="@Model.Category.CategoryId" />    
-    <div class="form-group">
-        <label asp-for="@Model.Category.CategoryName" class="col-lg-3 control-label">Название:</label>
+    <div class="form-group">        
         <div class="col-lg-8">
-            <input asp-for="@Model.Category.CategoryName" class="form-control" type="text">
+            <input asp-for="@Model.Category.CategoryName" class="form-control" type="text" placeholder="Название">
             <span class="field-validation-valid" asp-validation-for="@Model.Category.CategoryName"></span>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label"></label>
+    <div class="form-group">       
         <div class="col-md-8">
             <input type="submit" class="btn btn-primary" value="Сохранить">
             <span></span>            

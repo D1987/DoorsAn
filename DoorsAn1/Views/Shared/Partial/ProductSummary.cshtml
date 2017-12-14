@@ -1,7 +1,7 @@
 ﻿
   <div class="col-sm-4 col-md-4 col-lg-4">
       <div class="thumbnail">
-          <a asp-action="Details" asp-controller="Product" asp-route-id="@Model.ProductId">
+          <a asp-action="Details" asp-controller="Product" asp-route-id="@Model.ProductId" style="text-decoration: none">
               <div class="item-responsive item-4by3">
                   @if (Model.Image != null)
                   {
@@ -23,15 +23,15 @@
                   }
               </div>
             <div class="caption">   
-                <p class="pull-right">@Model.Price.ToString("c")</p>
-                <h3>@Model.Name</h3>             
+                <p class="pull-right" id="price">@Model.Price руб</p>
+                <h2 id="title">@Model.Name</h2>             
                 
-                @if (Model.Status.Equals(true))
+                @if (!Model.Status.Equals(true))
                 {
-                    <p>В наличии</p>
+                    <p id="statusFalse">В наличии нет</p>
                 }else
                 {
-                    <p>В наличии нет</p>
+                    <p id="statusTrue">В наличии</p>
                 }               
             </div>
           </a>

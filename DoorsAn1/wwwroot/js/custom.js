@@ -1,9 +1,9 @@
 ﻿/*back to top*/
 $(window).scroll(function () {
     if ($(this).scrollTop()) {
-        $('.back-to-top').fadeIn();
+        $('#back-to-top').fadeIn();
     } else {
-        $('.back-to-top').fadeOut();
+        $('#back-to-top').fadeOut();
     }
 });
 

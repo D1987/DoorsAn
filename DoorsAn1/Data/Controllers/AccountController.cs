@@ -58,7 +58,7 @@ namespace DoorsAn1.Data.Controllers
                  }
                  else
                  {
-                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                     ModelState.AddModelError("CustomError", "Неправильный логин и (или) пароль");
                  }
              }
              return View(loginViewModel);
