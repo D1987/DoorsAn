@@ -38,14 +38,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    @await Component.InvokeAsync("CategoryMenu")
-                    <li><a asp-controller="Category" asp-action="Create">Категории</a></li>
+                    @await Component.InvokeAsync("CategoryMenu")                    
                 </ul>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <form class="nav navbar-nav pull-right" method="post" asp-controller="Account" asp-action="Logout">
+                    <form method="post" asp-controller="Account" asp-action="Logout">
                         <ul class="nav navbar-nav pull-right">
-                            <li><a>@User.Identity.Name</a></li>                            
+                            <li><a>@User.Identity.Name</a></li> 
+                            <li><a asp-controller="Category" asp-action="Create">Категории</a></li>
                             <li>
                                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Выйти</button>
                             </li>                           

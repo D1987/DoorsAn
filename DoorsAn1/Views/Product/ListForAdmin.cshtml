@@ -5,40 +5,40 @@
     ViewBag.Title = "Список товаров";
 }
 
-<br />
+<br/>
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
-            <a class="btn btn-primary btn-add" asp-action="Create">Добавить товар</a>
-        </div>
-    </div>
-
-    <form method="get">
-        <div class="container">
-            <div class="row ">
-                <div class="col-md-6 pull-right">
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { placeholder= "Поиск по названию", @class = "form-control" })
-                            <span class="input-group-btn">
-                                <button class="btn btn-info" type="submit" value="Найти">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
+<div class="row">        
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <a class="btn btn-primary btn-add" asp-action="Create">Добавить товар</a>
+    </div>       
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <form method="get" class="form-horizontal">
+            <div class="form-group">
+                <div class="input-group col-md-12">
+                    @Html.TextBox("name", Model.FilterViewModel.SelectedName, htmlAttributes: new { placeholder = "Поиск по названию", @class = "form-control" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
                 </div>
             </div>
-            <br />
-            <div class="col-md-6 form-inline form-group pull-right">
-                @Html.DropDownList("category", Model.FilterViewModel.Categories as SelectList,
-                        htmlAttributes: new { @class = "form-control" })
-                <input type="submit" value="Найти" class="btn btn-info" />
+            <div class="form-group">
+                <div class="input-group col-md-12">
+                    @Html.DropDownList("category", Model.FilterViewModel.Categories as SelectList,
+            htmlAttributes: new { @class = "form-control" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+            @Html.ValidationMessage("CustomError", new { @class = "text-danger" })
+        </form>
+    </div>   
+</div>  
+
 
 <table class="table table-striped">
     <thead>
@@ -104,7 +104,9 @@
                    asp-route-name="@(Model.FilterViewModel.SelectedName)"
                    asp-route-category="@(Model.FilterViewModel.SelectedCategory)"
                    asp-route-sortorder="@(Model.SortViewModel.Current)"
-                   class="page-link">Вперед</a>
+                   class="page-link">
+                    Вперед<i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
             }
         </li>
     </ul>
@@ -120,7 +122,9 @@
                    asp-route-name="@(Model.FilterViewModel.SelectedName)"
                    asp-route-category="@(Model.FilterViewModel.SelectedCategory)"
                    asp-route-sortorder="@(Model.SortViewModel.Current)"
-                   class="page-link">Назад</a>
+                   class="page-link">
+                    <i class="glyphicon glyphicon-chevron-left"></i>Назад                
+                </a>
             }
         </li>
     </ul>

@@ -41,25 +41,30 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>                    
                         @await Component.InvokeAsync("CategoryMenu")                    
-                    </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li><a>гор. 65-70-42</a></li>
-                    <li><a>МТС 8(029) 887-54-28</a></li>
-                    <li><a>Velcome 8(029) 692-53-65</a></li>
-                </ul>                
+                    </ul>                             
 
                @if (User.Identity.IsAuthenticated)
                {
-                <form class="nav navbar-nav pull-right" method="post" asp-controller="Account" asp-action="Logout">
+                <form method="post" asp-controller="Account" asp-action="Logout">
                     <ul class="nav navbar-nav pull-right">
                         <li><a>@User.Identity.Name</a></li>
                         <li><a asp-controller="Product" asp-action="ListForAdmin">Личный кабинет</a></li>
                         <li>
                             <button type="submit" class="btn btn-link navbar-btn navbar-link">Выйти</button>
                         </li>
+                        
                     </ul>
                 </form>
                }
+               else
+               {
+                <ul class="nav navbar-nav pull-right">
+                    <li><a>гор. 65-70-42</a></li>
+                    <li><a>МТС 8(029) 887-54-28</a></li>
+                    <li><a>Velcome 8(029) 692-53-65</a></li>
+                </ul>
+               }            
+            
             </div><!--/.nav-collapse -->
         </div>
     </div>
@@ -70,7 +75,7 @@
     <div class="container">
         <hr />
         <footer> 
-            <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
             <p>&copy; @DateTime.Now.Year - Legenda</p>
         </footer>
     </div>
