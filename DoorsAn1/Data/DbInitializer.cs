@@ -11,8 +11,8 @@ namespace DoorsAn1.Data
         //This example just creates an Administrator role and one Admin users
         public static async Task Initialize(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            string adminEmail = "admin";
-            string password = "Zx123456";
+            string adminEmail = "doorsan";
+            string password = "a8875428";
             if (await roleManager.FindByNameAsync("admin") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));

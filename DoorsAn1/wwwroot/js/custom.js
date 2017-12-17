@@ -23,3 +23,38 @@ function fileValidation() {
         }
     }
 }
+
+/*delete product */
+$(document).ready(function () {
+    //start of the document ready function
+    //delcaring global variable to hold primary key value.
+    var ProId;
+    $('.delete-prompt').click(function () {
+        ProId = $(this).attr('id');
+        $('#myModal').modal('show');       
+    });
+
+    $('.delete-confirm').click(function () {
+        if (ProId != '') {
+            $.ajax({
+                url: '/Product/Delete',
+                data: { 'id': ProId },
+                type: 'post',
+                success: function (data) {
+                    if (data) {
+                        $('#myModal').modal('hide');
+                        $('#myModal').on('hidden.bs.modal', function () {
+                            location.reload();
+                        });                        
+                    }
+                }, error: function (err) {
+                    if (!$('.modal-header').hasClass('alert-danger')) {
+                        $('.modal-header').removeClass('alert-success').addClass('alert-danger');
+                        $('.delete-confirm').css('display', 'none');
+                    }
+                    $('.success-message').html(err.statusText);
+                }
+            });
+        }
+    });
+});

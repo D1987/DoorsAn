@@ -181,7 +181,7 @@ namespace DoorsAn1.Data.Controllers
         #endregion
 
         #region Delete
-        [HttpGet]
+        /*[HttpGet]
         [ActionName("Delete")]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> ConfirmDelete(int? id)
@@ -196,11 +196,12 @@ namespace DoorsAn1.Data.Controllers
                         Product = await _db.Products.FirstOrDefaultAsync(p => p.ProductId == id),
                         Category = await _db.Categories.FirstOrDefaultAsync(p => p.CategoryId == product.CategoryId)
                     };
-                    return View(viewModel);
+                    //ViewBag.id = id;
+                    return PartialView("Partial/Product/Delete");
                 }
             }
             return NotFound();
-        }
+        }*/
 
         [HttpPost]
         [Authorize(Roles = "admin")]

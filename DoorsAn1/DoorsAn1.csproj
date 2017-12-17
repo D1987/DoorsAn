@@ -10,6 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Product\Partial\**" />
+    <Compile Remove="Views\Shared\Partial\Category\**" />
+    <Compile Remove="Views\Shared\Partial\Product\**" />
+    <Content Remove="Views\Product\Partial\**" />
+    <Content Remove="Views\Shared\Partial\Category\**" />
+    <Content Remove="Views\Shared\Partial\Product\**" />
+    <EmbeddedResource Remove="Views\Product\Partial\**" />
+    <EmbeddedResource Remove="Views\Shared\Partial\Category\**" />
+    <EmbeddedResource Remove="Views\Shared\Partial\Product\**" />
+    <None Remove="Views\Product\Partial\**" />
+    <None Remove="Views\Shared\Partial\Category\**" />
+    <None Remove="Views\Shared\Partial\Product\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Data\IDbInitializer.cs" />
     <Compile Remove="Data\Models\FileModel.cs" />
     <Compile Remove="Data\Models\Login.cs" />

@@ -1,4 +1,7 @@
-﻿<button type="button" class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" data-toggle="modal" data-target="#myModal"></button>
+﻿@using DoorsAn1.ViewModels
+@model ProductListViewModel
+
+<button type="button" class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right" data-toggle="modal" data-target="#myModal"></button>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -12,12 +15,13 @@
                 <p>Вы действительно хотите удалить данный товар?</p>                
             </div>
             <div class="modal-footer">
-                <form asp-controller="Product" asp-action="Delete" asp-route-id="@Model.ProductId" method="post">
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Удалить"/>
-                        <a  href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Отмена</a>
+                <form asp-controller="Product" asp-action="Delete" method="post">
+                    <div class="form-group">   
+                        <input type="hidden" id="@Model.ProductId" name="@Model.ProductId" />
+                        <input type="submit" class="btn btn-primary" value="Удалить"/> 
+                        <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Отмена</a>
                     </div>
-                </form>
+                </form>               
             </div>
         </div>
     </div>
