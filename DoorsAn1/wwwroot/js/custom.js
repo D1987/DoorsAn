@@ -24,7 +24,7 @@ function fileValidation() {
     }
 }
 
-/*delete product */
+/*modal delete confirm*/
 $(document).ready(function () {
     //start of the document ready function
     //delcaring global variable to hold primary key value.
@@ -36,6 +36,7 @@ $(document).ready(function () {
 
     $('.delete-confirm').click(function () {
         if (ProId != '') {
+            /*delete product */
             $.ajax({
                 url: '/Product/Delete',
                 data: { 'id': ProId },
@@ -46,6 +47,26 @@ $(document).ready(function () {
                         $('#myModal').on('hidden.bs.modal', function () {
                             location.reload();
                         });                        
+                    }
+                }, error: function (err) {
+                    if (!$('.modal-header').hasClass('alert-danger')) {
+                        $('.modal-header').removeClass('alert-success').addClass('alert-danger');
+                        $('.delete-confirm').css('display', 'none');
+                    }
+                    $('.success-message').html(err.statusText);
+                }
+            });
+            /*delete category */
+            $.ajax({
+                url: '/Category/Delete',
+                data: { 'id': ProId },
+                type: 'post',
+                success: function (data) {
+                    if (data) {
+                        $('#myModal').modal('hide');
+                        $('#myModal').on('hidden.bs.modal', function () {
+                            location.reload();
+                        });
                     }
                 }, error: function (err) {
                     if (!$('.modal-header').hasClass('alert-danger')) {

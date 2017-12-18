@@ -35,12 +35,35 @@
             <td>@item.CategoryName</td>            
         <td>
             <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Category" asp-route-id="@item.CategoryId"></a>
-            @await Html.PartialAsync("Partial/Category/Delete", new CategoryViewModel { CategoryId = @item.CategoryId })
-            
+            @*@await Html.PartialAsync("Partial/Category/Delete", new CategoryViewModel { CategoryId = @item.CategoryId })*@
+            <a href="javascript:void(0)" id="@item.CategoryId" class="btn btn-space btn-danger delete-prompt glyphicon glyphicon-trash pull-right"></a>
         </td>
     </tr>
     }
     </table>
+
+<!-- Bootstrap modal delete popup -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert alert-danger">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Удалить категорию</h4>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить данную категорию?</p>
+                <p>Обратите внимание: все товары данной категории также будут удалены.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success delete-confirm">Да</button>
+                <button class="btn btn-default" data-dismiss="modal">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of the boostrap modal popup -->
 
 @section scripts{
 

@@ -22,6 +22,9 @@
         <div class="col-md-5">
             <p>@Model.Product.LongDescription</p>
             <p>
+                <strong>Категоия</strong> : @Model.Product.Category.CategoryName
+            </p>
+            <p>
                 <strong>Производитель</strong> : @Model.Product.Producer
             </p>
             <strong>Состояние</strong> : @(Model.Product.Status ? "В наличии" : "В наличии нет")

@@ -33,8 +33,7 @@
                         </button>
                     </span>
                 </div>
-            </div>
-            @Html.ValidationMessage("CustomError", new { @class = "text-danger" })
+            @*</div>*@           
         </form>
     </div>   
 </div>  
@@ -86,7 +85,7 @@
             </td>
             <td>
                 <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Product" asp-route-id="@item.ProductId"></a>             
-                <a href="javascript:void(0)" id="@item.ProductId" class="btn btn-space btn-danger glyphicon glyphicon-trash pull-right"></a>
+                <a href="javascript:void(0)" id="@item.ProductId" class="btn btn-space btn-danger delete-prompt glyphicon glyphicon-trash pull-right"></a>
             </td>
         </tr>
     }
@@ -114,7 +113,7 @@
 </div>
 <!-- End of the boostrap modal popup -->
 
-@*@Html.ValidationMessage("CustomError", new { @style = "color:black" })*@
+@Html.ValidationMessage("CustomError", new { @style = "color:black" })
 
 <nav aria-label="Page navigation example">
     <ul class="pagination">
