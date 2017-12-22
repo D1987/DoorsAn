@@ -1,5 +1,4 @@
-﻿using System;
-using DoorsAn1.Data.interfaces;
+﻿using DoorsAn1.Data.interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DoorsAn1.Data;
-using DoorsAn1.Data.Models;
 using DoorsAn1.Data.Repositories;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
 namespace DoorsAn1
