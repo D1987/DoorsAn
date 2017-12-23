@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,9 +38,21 @@ namespace DoorsAn1.Data.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Create(Category category)
+        public async Task<IActionResult> Create(CategoryViewModel categoryViewModel)
         {
-            _db.Categories.Add(category);
+            if (categoryViewModel.Image != null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов  
+                using (var binaryReader = new BinaryReader(categoryViewModel.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)categoryViewModel.Image.Length);
+                }
+                // установка массива байтов
+                categoryViewModel.Category.Image = imageData;
+            }
+
+            _db.Categories.Add(categoryViewModel.Category);
             await _db.SaveChangesAsync();
             return Redirect("/Category/Create");
         }
@@ -68,7 +81,18 @@ namespace DoorsAn1.Data.Controllers
         [HttpPost]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(CategoryViewModel categoryViewModel)
-        {           
+        {
+            if (categoryViewModel.Image != null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов  
+                using (var binaryReader = new BinaryReader(categoryViewModel.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)categoryViewModel.Image.Length);
+                }
+                // установка массива байтов
+                categoryViewModel.Category.Image = imageData;
+            }
             _db.Categories.Update(categoryViewModel.Category);
             await _db.SaveChangesAsync();
             return Redirect("/Category/Create");

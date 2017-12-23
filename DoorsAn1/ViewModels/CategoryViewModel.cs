@@ -1,4 +1,5 @@
 ﻿using DoorsAn1.Data.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,10 @@ namespace DoorsAn1.ViewModels
 {
     public class CategoryViewModel
     {
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
-        public int CategoryId { get; set; }
+        public Product Product { get; set; } 
+        public IFormFile Image { get; set; }
     }
 }

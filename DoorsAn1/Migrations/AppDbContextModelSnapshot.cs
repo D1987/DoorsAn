@@ -25,9 +25,13 @@ namespace DoorsAn1.Migrations
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CategoryName");
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("Description");
+
+                    b.Property<byte[]>("Image");
 
                     b.HasKey("CategoryId");
 
@@ -50,7 +54,7 @@ namespace DoorsAn1.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(250);
 
                     b.Property<int>("Price");
 

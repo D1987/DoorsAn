@@ -11,8 +11,8 @@ using System;
 namespace DoorsAn1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20171205115155_sqilsoft")]
-    partial class sqilsoft
+    [Migration("20171223140237_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,13 @@ namespace DoorsAn1.Migrations
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CategoryName");
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("Description");
+
+                    b.Property<byte[]>("Image");
 
                     b.HasKey("CategoryId");
 
@@ -46,17 +50,16 @@ namespace DoorsAn1.Migrations
 
                     b.Property<int>("InStock");
 
-                    b.Property<string>("LongDescription");
+                    b.Property<string>("LongDescription")
+                        .IsRequired();
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(250);
 
                     b.Property<int>("Price");
 
                     b.Property<string>("Producer");
-
-                    b.Property<string>("ShortDescription")
-                        .IsRequired();
 
                     b.Property<bool>("Status");
 

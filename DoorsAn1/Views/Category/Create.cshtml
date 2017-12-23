@@ -7,11 +7,16 @@
 
 <br/>
 
-<form asp-action="create" asp-controller="category">
+<form asp-action="create" asp-controller="category" enctype="multipart/form-data">
     <div class="form-group">        
         <input type="text" asp-for="@Model.Category.CategoryName" class="form-control" placeholder= "Название"/>
         <span class="field-validation-valid" asp-validation-for="@Model.Category.CategoryName"></span>
     </div>    
+    <div class="form-group">
+        <input type="file" id="file" name="Image" asp-for="@Model.Product.Image" class="form-control" onchange="return fileValidation()" />
+        <span asp-validation-for="@Model.Product.Image" class="field-validation-valid"></span>
+        <p id="validation"></p>
+    </div>
     <div class="form-group">
         <input type="submit" value="Добавить" class="btn btn-primary btn-add" />
         <a class="btn btn-default" asp-action="Create" asp-controller="Product">Отмена</a>
@@ -34,8 +39,7 @@
         <tr>            
             <td>@item.CategoryName</td>            
         <td>
-            <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Category" asp-route-id="@item.CategoryId"></a>
-            @*@await Html.PartialAsync("Partial/Category/Delete", new CategoryViewModel { CategoryId = @item.CategoryId })*@
+            <a class="btn btn-space btn-primary glyphicon glyphicon-pencil pull-right" asp-action="Edit" asp-controller="Category" asp-route-id="@item.CategoryId"></a>            
             <a href="javascript:void(0)" id="@item.CategoryId" class="btn btn-space btn-danger delete-prompt glyphicon glyphicon-trash pull-right"></a>
         </td>
     </tr>

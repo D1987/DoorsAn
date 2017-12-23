@@ -16,7 +16,7 @@
                 <div class="col-lg-8 mx-auto text-center">
                     <h2 class="section-heading text-white">У нас есть то, что вам нужно!</h2>
                     <hr class="light">
-                    <p class="text-faded">Информация о нас!</p>
+                    <p class="text-faded">Мы занимается продажей входных и межкомнатный дверей и фурнитуры к ним всевозможных брендов. За несколько лет существования на рынке Республики Беларусь, «ДоорсАн» заслужила хорошую репутацию надежного продавца качественной продукции. Высокий уровень профессионализма и большой опыт менеджерам компании позволяет удовлетворить потребности любого покупателя. Качественные консультации по телефону помогут определиться с выбором и подобрать необходимую фурнитуру и аксессуары.</p>
                     <a class="btn btn-default btn-xl js-scroll-trigger" href="#services">Начать!</a>
                 </div>
             </div>
@@ -37,15 +37,15 @@
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Доставка</h3>
-                        <p class="text-muted">Что-то про доставку.</p>
+                        <h3>Рассрочка</h3>
+                        <p class="text-muted">Рассрочка 0%.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Установка</h3>
-                        <p class="text-muted">Что-то про установку!</p>
+                        <h3>Доставка</h3>
+                        <p class="text-muted">Доставка бесплатною</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
@@ -67,31 +67,43 @@
     </section>
 
     <section class="p-0" id="portfolio">
+
         <div class="container-fluid">
-           <div class="row no-gutter "><!--popup-gallery-->
-             @foreach (var category in Model.Categories)
-             {
-               <div class="col-lg-4 col-sm-6">
-                    <a asp-controller="Product" asp-action="ListForAll"
-                                       asp-route-category="@category.CategoryId" class="portfolio-box" >
-                        <img class="img-fluid" src="~/lib/bootstrap/landing/img/categories/1.jpg" alt="">
-                        <div class="portfolio-box-caption">
-                           <div class="portfolio-box-caption-content">
-                                <div class="project-name text-faded">
-                                    @category.CategoryName <!--change one variable-->
-                                </div>                                
-                           </div>
-                        </div>
-                    </a>
-                </div>
-              }
+            <div class="row no-gutter ">
+                <!--popup-gallery-->
+                @foreach (var category in Model.Categories)
+                {
+                    <div class="col-lg-4 col-sm-6">
+                        <a asp-controller="Product" asp-action="ListForAll"
+                           asp-route-category="@category.CategoryId" class="portfolio-box">
+                            @if (category.Image != null)
+                            {                                
+                                <img class="img-fluid" style="width:650px;height:350px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(category.Image))" alt="Категория">
+                            }
+                            else
+                            {
+                                <img class="img-fluid" src="../../Images/default.png" alt="Категория">
+                            }
+                            <div class="portfolio-box-caption">
+                                <div class="portfolio-box-caption-content">
+                                    <div class="project-name text-faded">
+                                        @category.CategoryName <!--change one variable-->
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
             </div>
         </div>
-    </section>
+
+
+
+</section>
 
     <div class="call-to-action bg-dark">
         <div class="container text-center">
-            <h2>Слоган придумай к товарам (полезный)!</h2>            
+            <h2>Продажа всех видов кровли, межкомнатных и входных дверей.</h2>            
         </div>
     </div>
 
@@ -108,7 +120,8 @@
                 <div class="col-lg-12 mr-auto text-center" align="center">
                     <i class="fa fa-clock-o fa-3x sr-contact"></i>
                     <p>
-                        Пн-Пт: 10:00-17:00; Суб.: 10:00-14:00
+                        Пн-Пт.: 09:00-17:00; <br/>
+                        Суб.: 10:00-14:00
                     </p>
                 </div>
                 <div class="col-lg-4 ml-auto text-center">
@@ -120,13 +133,13 @@
                 <div class="col-lg-4 mr-auto text-center">
                     <i class="fa fa-envelope-o fa-3x sr-contact"></i>
                     <p>
-                        <a href="mailto:your-email@your-domain.com">andrew@mail.ru</a>
+                        doorsan.an@mail.ru
                     </p>
                 </div>
                 <div class="col-lg-4 mr-auto text-center">
                     <i class="fa fa-map-marker fa-3x"></i>
                     <p>
-                        улица
+                        ул. Соколовского, 20А к 2
                     </p>
                 </div>
             </div>           

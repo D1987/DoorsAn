@@ -6,37 +6,63 @@
 }
 
 <br/>
-<form asp-action="edit" asp-controller="category" asp-route-id="@Model.Category.CategoryId" class="form-horizontal" role="form">
-    <input type="hidden" asp-for="@Model.Category.CategoryId" />    
-    <div class="form-group">        
-        <div class="col-lg-8">
-            <input asp-for="@Model.Category.CategoryName" class="form-control" type="text" placeholder="Название">
-            <span class="field-validation-valid" asp-validation-for="@Model.Category.CategoryName"></span>
+<div class="row">
+    <!-- left column -->
+    <div class="form-group">
+        <div class="col-md-3">
+            <div class="text-center">
+                @if (Model.Category.Image != null)
+            {
+                    <img style='width:220px; height:200px;' class="avatar img-circle" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Category.Image))" alt="Категория"/>
+                }
+                else
+                {
+                    <img style='width:220px; height:200px;' class="avatar img-circle" src="../../Images/default.png" alt="Категория"/>
+                }
+            </div>
         </div>
     </div>
-    <div class="form-group">       
-        <div class="col-md-8">
-            <input type="submit" class="btn btn-primary" value="Сохранить">
-            <span></span>            
-            <a class="btn btn-default" asp-action="Create" asp-controller="Category">Отмена</a>
-        </div>
+    <div class="col-md-9 personal-info">
+        <form asp-action="edit" asp-controller="category" asp-route-id="@Model.Category.CategoryId" class="form-horizontal" role="form">
+            <input type="hidden" asp-for="@Model.Category.CategoryId" />
+            <div class="form-group">
+                <div class="col-lg-8">
+                    <input asp-for="@Model.Category.CategoryName" class="form-control" type="text" placeholder="Название">
+                    <span asp-validation-for="@Model.Category.CategoryName" class="field-validation-valid"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-8">
+                    <input type="file" id="file" name="Image" asp-for="@Model.Product.Image" class="form-control" onchange="return fileValidation()" />
+                    <span asp-validation-for="@Model.Product.Image" class="field-validation-valid"></span>
+                    <p id="validation"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input type="submit" class="btn btn-primary" value="Сохранить">
+                    <span></span>
+                    <a class="btn btn-default" asp-action="Create" asp-controller="Category">Отмена</a>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+    </div>
 
-@section scripts{
+    @section scripts{
 
-    <environment names="Development">
-        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
-                asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.validator">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
-                asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
-        </script>
-    </environment>
-}
+        <environment names="Development">
+            <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+            <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        </environment>
+        <environment names="Staging,Production">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+                    asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.validator">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+                    asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
+            </script>
+        </environment>
+    }
