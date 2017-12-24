@@ -23,8 +23,9 @@
         </div>
     </div>
     <div class="col-md-9 personal-info">
-        <form asp-action="edit" asp-controller="category" asp-route-id="@Model.Category.CategoryId" class="form-horizontal" role="form">
+        <form asp-action="edit" asp-controller="category" asp-route-id="@Model.Category.CategoryId" enctype="multipart/form-data" class="form-horizontal" role="form">
             <input type="hidden" asp-for="@Model.Category.CategoryId" />
+            <input type="hidden" asp-for="@Model.Category.Image" />
             <div class="form-group">
                 <div class="col-lg-8">
                     <input asp-for="@Model.Category.CategoryName" class="form-control" type="text" placeholder="Название">
