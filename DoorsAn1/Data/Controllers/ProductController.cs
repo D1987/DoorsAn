@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using DoorsAn1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using DoorsAn1.Data.interfaces;
+//using DoorsAn1.Data.interfaces;
 using DoorsAn1.Data.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -17,15 +17,15 @@ namespace DoorsAn1.Data.Controllers
     [Route("api/products")]
     public class ProductController:Controller
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IProductRepository _productRepository;
+        //private readonly ICategoryRepository _categoryRepository;
+        //private readonly IProductRepository _productRepository;
         private readonly AppDbContext _db;
         private IHostingEnvironment _environment;
 
-        public ProductController(ICategoryRepository categoryRepository, IProductRepository productRepository, AppDbContext context, IHostingEnvironment environment)
+        public ProductController(/*ICategoryRepository categoryRepository, IProductRepository productRepository,*/ AppDbContext context, IHostingEnvironment environment)
         {
-            _categoryRepository = categoryRepository;
-            _productRepository = productRepository;
+            //_categoryRepository = categoryRepository;
+            //_productRepository = productRepository;
             _db = context;
             _environment = environment;
         }

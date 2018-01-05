@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,11 +26,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\CategoryMenu.cs" />
     <Compile Remove="Data\IDbInitializer.cs" />
     <Compile Remove="Data\Models\FileModel.cs" />
     <Compile Remove="Data\Models\Login.cs" />
     <Compile Remove="Data\Models\Role.cs" />
     <Compile Remove="Data\Models\User.cs" />
+    <Compile Remove="Data\Services\Interfaces\ICategoryRepository.cs" />
+    <Compile Remove="Data\Services\Interfaces\IProductRepository.cs" />
+    <Compile Remove="Data\Services\Repositories\CategoryRepository.cs" />
+    <Compile Remove="Data\Services\Repositories\ProductRepository.cs" />
     <Compile Remove="ViewModels\FileModel.cs" />
     <Compile Remove="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
@@ -51,6 +56,9 @@
   <ItemGroup>
     <None Remove="ClientApp\app\app.component.ts" />
     <None Remove="ClientApp\app\app.module.ts" />
+    <None Remove="ClientApp\app\categories\category.component.ts" />
+    <None Remove="ClientApp\app\categories\category.service.ts" />
+    <None Remove="ClientApp\app\category.ts" />
     <None Remove="ClientApp\app\data.service.ts" />
     <None Remove="ClientApp\app\main.ts" />
     <None Remove="ClientApp\app\product.ts" />
@@ -69,6 +77,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="Data\Services\Interfaces\" />
+    <Folder Include="Data\Services\Repositories\" />
     <Folder Include="wwwroot\lib\bootstrap\landing\img\categories\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
@@ -80,6 +91,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\categories\category.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\categories\category.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\category.ts" />
     <TypeScriptCompile Include="ClientApp\app\data.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\product.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />

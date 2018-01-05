@@ -1,4 +1,4 @@
-﻿using DoorsAn1.Data.interfaces;
+﻿//using DoorsAn1.Data.interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DoorsAn1.Data;
-using DoorsAn1.Data.Repositories;
+//using DoorsAn1.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 
@@ -37,8 +37,8 @@ namespace DoorsAn1
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            //services.AddTransient<IProductRepository, ProductRepository>();
+            //services.AddTransient<ICategoryRepository, CategoryRepository>();
             
             services.AddMemoryCache();
             services.AddSession();

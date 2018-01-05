@@ -1,4 +1,6 @@
-﻿export class Product {
+﻿import { Category } from "./Category";
+
+export class Product {
     constructor(
         public productId?: number,
         public name?: string,
@@ -9,6 +11,6 @@
         //public image?: byte[],
         public inStock?: number,
         public categoryId?: number,
-        //public category?: Category,
+        public category?: Category,
     ) { }
 }

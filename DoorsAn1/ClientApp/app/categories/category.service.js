@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-var DataService = /** @class */ (function () {
-    function DataService(http) {
+var CategoryService = /** @class */ (function () {
+    function CategoryService(http) {
         this.http = http;
-        this.url = "/api/products";
+        this.url = "/api/сategories";
     }
-    DataService.prototype.getProducts = function () {
+    CategoryService.prototype.getCategories = function () {
         return this.http.get(this.url);
     };
-    DataService.prototype.createProduct = function (product) {
-        return this.http.post(this.url, product);
+    CategoryService.prototype.createCategory = function (category) {
+        return this.http.post(this.url, category);
     };
-    DataService.prototype.updateProduct = function (product) {
-        return this.http.put(this.url + '/' + product.productId, product);
+    CategoryService.prototype.updateCategory = function (category) {
+        return this.http.put(this.url + '/' + category.categoryId, category);
     };
-    DataService.prototype.deleteProduct = function (id) {
+    CategoryService.prototype.deleteCategory = function (id) {
         return this.http.delete(this.url + '/' + id);
     };
-    DataService = __decorate([
+    CategoryService = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [HttpClient])
-    ], DataService);
-    return DataService;
+    ], CategoryService);
+    return CategoryService;
 }());
-export { DataService };
-//# sourceMappingURL=data.service.js.map
+export { CategoryService };
+//# sourceMappingURL=category.service.js.map

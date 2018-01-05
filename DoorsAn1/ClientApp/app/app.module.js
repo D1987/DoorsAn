@@ -8,14 +8,23 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-var AppModule = (function () {
+import { CategoryComponent } from './categories/category.component';
+import { DataService } from './data.service';
+import { CategoryService } from './categories/category.service';
+// определение маршрутов
+var appRoutes = [
+    { path: 'categories', component: CategoryComponent }
+];
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         NgModule({
-            imports: [BrowserModule, FormsModule, HttpClientModule],
-            declarations: [AppComponent],
+            imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
+            declarations: [AppComponent, CategoryComponent],
+            providers: [DataService, CategoryService],
             bootstrap: [AppComponent]
         })
     ], AppModule);

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { DataService } from './data.service';
 import { Product } from './product';
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent(dataService) {
         this.dataService = dataService;
         this.product = new Product(); // изменяемый товар

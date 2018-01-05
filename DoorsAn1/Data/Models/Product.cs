@@ -25,7 +25,7 @@ namespace DoorsAn1.Data.Models
         //[Required]
         //[DataType(DataType.Upload)]
         //[Display(Name = "foto")]
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
 
         public int InStock { get; set; }
 

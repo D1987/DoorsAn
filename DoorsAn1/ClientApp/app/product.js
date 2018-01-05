@@ -1,7 +1,7 @@
-var Product = (function () {
+var Product = /** @class */ (function () {
     function Product(productId, name, producer, price, longDescription, status, 
         //public image?: byte[],
-        inStock, categoryId) {
+        inStock, categoryId, category) {
         this.productId = productId;
         this.name = name;
         this.producer = producer;
@@ -10,6 +10,7 @@ var Product = (function () {
         this.status = status;
         this.inStock = inStock;
         this.categoryId = categoryId;
+        this.category = category;
     }
     return Product;
 }());
