@@ -10,32 +10,59 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Compile Remove="Data\Services\**" />
+    <Compile Remove="Views\Category\**" />
+    <Compile Remove="Views\Home\**" />
     <Compile Remove="Views\Product\Partial\**" />
+    <Compile Remove="Views\Shared\Components\**" />
     <Compile Remove="Views\Shared\Partial\Category\**" />
     <Compile Remove="Views\Shared\Partial\Product\**" />
+    <Content Remove="Components\**" />
+    <Content Remove="Data\Services\**" />
+    <Content Remove="Views\Category\**" />
+    <Content Remove="Views\Home\**" />
     <Content Remove="Views\Product\Partial\**" />
+    <Content Remove="Views\Shared\Components\**" />
     <Content Remove="Views\Shared\Partial\Category\**" />
     <Content Remove="Views\Shared\Partial\Product\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Data\Services\**" />
+    <EmbeddedResource Remove="Views\Category\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
     <EmbeddedResource Remove="Views\Product\Partial\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\**" />
     <EmbeddedResource Remove="Views\Shared\Partial\Category\**" />
     <EmbeddedResource Remove="Views\Shared\Partial\Product\**" />
+    <None Remove="Components\**" />
+    <None Remove="Data\Services\**" />
+    <None Remove="Views\Category\**" />
+    <None Remove="Views\Home\**" />
     <None Remove="Views\Product\Partial\**" />
+    <None Remove="Views\Shared\Components\**" />
     <None Remove="Views\Shared\Partial\Category\**" />
     <None Remove="Views\Shared\Partial\Product\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Controllers\CategoryController.cs" />
+    <Compile Remove="Data\Controllers\HomeController.cs" />
     <Compile Remove="Data\IDbInitializer.cs" />
+    <Compile Remove="Data\Models\Category.cs" />
     <Compile Remove="Data\Models\FileModel.cs" />
     <Compile Remove="Data\Models\Login.cs" />
     <Compile Remove="Data\Models\Role.cs" />
     <Compile Remove="Data\Models\User.cs" />
+    <Compile Remove="ViewModels\CategoryViewModel.cs" />
     <Compile Remove="ViewModels\FileModel.cs" />
+    <Compile Remove="ViewModels\FilterViewModel.cs" />
     <Compile Remove="ViewModels\HomeViewModel.cs" />
+    <Compile Remove="ViewModels\PageViewModel.cs" />
+    <Compile Remove="ViewModels\SortState.cs" />
+    <Compile Remove="ViewModels\SortViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Category\Delete.cshtml" />
     <Content Remove="Views\Product\Delete.cshtml" />
     <Content Remove="Views\Shared\LoginPartial.cshtml" />
     <Content Remove="wwwroot\css\carousel.css" />
@@ -48,6 +75,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Data\Controllers\CategoryController.cs.orig" />
+    <None Remove="ViewModels\CategoryViewModel.cs.orig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CaptchaGen.NetCore" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
@@ -56,6 +88,7 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

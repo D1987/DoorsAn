@@ -14,10 +14,10 @@ namespace DoorsAn1
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            //BuildWebHost(args).Run();
-            var host = BuildWebHost(args);
+            BuildWebHost(args).Run();
+            /*var host = BuildWebHost(args);
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -34,13 +34,12 @@ namespace DoorsAn1
                 }
 
                 host.Run();
-            }
+            }*/
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
                WebHost.CreateDefaultBuilder(args)
-               .UseStartup<Startup>()
-               .UseStartup<Startup>()
+               .UseStartup<Startup>()               
                .Build();
         }
 }

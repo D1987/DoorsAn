@@ -32,7 +32,7 @@ namespace DoorsAn1.Data.Models
 
         public int CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Не выбрана категория!")]
-        public Category Category { get; set; }
+        //[Required(ErrorMessage = "Не выбрана категория!")]
+        //public Category Category { get; set; }
     }
 }
