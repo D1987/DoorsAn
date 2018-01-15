@@ -56,7 +56,7 @@ var CategoryComponent = /** @class */ (function () {
     };
     CategoryComponent = __decorate([
         Component({
-            selector: 'app',
+            selector: 'category',
             templateUrl: './category.component.html',
             providers: [CategoryService]
         }),

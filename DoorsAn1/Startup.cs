@@ -24,7 +24,7 @@ namespace DoorsAn1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<AppDbContext>(options => options
+            /*services.AddDbContext<AppDbContext>(options => options
             .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(opts => {
@@ -35,30 +35,31 @@ namespace DoorsAn1
                 opts.Password.RequireDigit = true; // требуются ли цифры
             })
                 .AddEntityFrameworkStores<AppDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders();*/
 
             //services.AddTransient<IProductRepository, ProductRepository>();
             //services.AddTransient<ICategoryRepository, CategoryRepository>();
             
-            services.AddMemoryCache();
-            services.AddSession();
+            //services.AddMemoryCache();
+            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env/*, ILoggerFactory loggerFactory*/)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
 
                 // добавляем сборку через webpack
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                /*app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
-                });
+                });*/
             }
 
-            app.UseDefaultFiles();
+app.UseMvc();
+            /*app.UseDefaultFiles();
             app.UseStaticFiles();
             loggerFactory.AddConsole();
             app.UseDeveloperExceptionPage();
@@ -72,7 +73,7 @@ namespace DoorsAn1
                 routes.MapRoute(name: "categoryFilter", template: "Product/{action}/{category?}",
                     defaults:new {Controller="Product", action="List"});
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            });*/
             
         }
     }
