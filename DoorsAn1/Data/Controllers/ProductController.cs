@@ -80,44 +80,44 @@ namespace DoorsAn1.Data.Controllers
         //}
 
         //#endregion
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Products.Add(product);
-                        //Category = await _db.Categories.FirstOrDefaultAsync(p => p.CategoryId == product.CategoryId)
-                return Ok(product);
-            }
-            return BadRequest(ModelState);
-        }
-        #endregion      
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.Products.Add(product);
+        //                //Category = await _db.Categories.FirstOrDefaultAsync(p => p.CategoryId == product.CategoryId)
+        //        return Ok(product);
+        //    }
+        //    return BadRequest(ModelState);
+        //}
+        //#endregion      
 
-        # region Edit
+        //# region Edit
        // [Authorize(Roles = "admin")]
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Product product)
-                        //FilterViewModel = new FilterViewModel().FilterEditViewModel(_db.Categories.ToList(), category, name),
-                        //Category = await _db.Categories.FirstOrDefaultAsync(p => p.CategoryId == product.CategoryId)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Update(product);
-                _db.SaveChanges();
-                return Ok(product);
-            }
-            //productViewModel.Product.CategoryId = productViewModel.Product.Category.CategoryId;
-            //productViewModel.Product.Category = null;
-        }
-        #endregion
+        //[HttpPut("{id}")]
+        //public IActionResult Put(int id, [FromBody]Product product)
+        //                //FilterViewModel = new FilterViewModel().FilterEditViewModel(_db.Categories.ToList(), category, name),
+        //                //Category = await _db.Categories.FirstOrDefaultAsync(p => p.CategoryId == product.CategoryId)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.Update(product);
+        //        _db.SaveChanges();
+        //        return Ok(product);
+        //    }
+        //    //productViewModel.Product.CategoryId = productViewModel.Product.Category.CategoryId;
+        //    //productViewModel.Product.Category = null;
+        //}
+        //#endregion
 
-        #region Delete
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            Product product = _db.Products.FirstOrDefault(p => p.ProductId == id);
-            if (product != null)
-            {
-                _db.Products.Remove(product);
-                _db.SaveChanges();
+        //#region Delete
+        //[HttpDelete("{id}")]
+        //public IActionResult Delete(int id)
+        //{
+        //    Product product = _db.Products.FirstOrDefault(p => p.ProductId == id);
+        //    if (product != null)
+        //    {
+        //        _db.Products.Remove(product);
+        //        _db.SaveChanges();
         //#region Sort
         //private IQueryable<Product> Sort(IQueryable<Product> products, SortState sortOrder)
         //{
@@ -159,7 +159,7 @@ namespace DoorsAn1.Data.Controllers
         //    if (products.Count() == 0) {
         //        ModelState.AddModelError("CustomError", "Ничего не найдено!");
         //    }
-            return Ok(product);
+            //return Ok(product);
         //    return products;
         //}
         //#endregion

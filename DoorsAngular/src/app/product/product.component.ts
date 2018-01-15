@@ -7,7 +7,7 @@ import { Http } from '@angular/http';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  product: any;
+  products: any;
 
   constructor(private http: Http) { }
 
@@ -16,9 +16,9 @@ export class ProductComponent implements OnInit {
   }
 
   getProducts() {
-    this.http.get('http://localhost:63530/api/products').subscribe(response =>{
-      console.log(response);
-    })
+    this.http.get('http://localhost:63530/api/product').subscribe(response => {
+      this.products = response.json()
+    });
   }
 
 }

@@ -25,7 +25,7 @@ namespace DoorsAn1
 
         public void ConfigureServices(IServiceCollection services)
         {
-            /*services.AddDbContext<AppDbContext>(options => options
+            services.AddDbContext<AppDbContext>(options => options
             .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
             services.AddCors();
@@ -45,24 +45,22 @@ namespace DoorsAn1
             //services.AddTransient<ICategoryRepository, CategoryRepository>();
             
             //services.AddMemoryCache();
-            services.AddSession();*/
+            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env/*, ILoggerFactory loggerFactory*/)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
 
-                // добавляем сборку через webpack
-                /*app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-            /*loggerFactory.AddConsole();
-                });*/
-            }
-
-app.UseMvc();
+            //    // добавляем сборку через webpack
+            //    /*app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+            //    {
+            ///*loggerFactory.AddConsole();
+            //    });*/
+            //}
             /*app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseDeveloperExceptionPage();
