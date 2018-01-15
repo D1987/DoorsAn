@@ -1,0 +1,142 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">-->
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Compile Remove="Data\Services\**" />
+    <Compile Remove="Views\Category\**" />
+    <Compile Remove="Views\Home\**" />
+    <Compile Remove="Views\Product\Partial\**" />
+    <Compile Remove="Views\Shared\Components\**" />
+    <Compile Remove="Views\Shared\Partial\Category\**" />
+    <Compile Remove="Views\Shared\Partial\Product\**" />
+    <Content Remove="Components\**" />
+    <Content Remove="Data\Services\**" />
+    <Content Remove="Views\Category\**" />
+    <Content Remove="Views\Home\**" />
+    <Content Remove="Views\Product\Partial\**" />
+    <Content Remove="Views\Shared\Components\**" />
+    <Content Remove="Views\Shared\Partial\Category\**" />
+    <Content Remove="Views\Shared\Partial\Product\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <EmbeddedResource Remove="Data\Services\**" />
+    <EmbeddedResource Remove="Views\Category\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
+    <EmbeddedResource Remove="Views\Product\Partial\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\**" />
+    <EmbeddedResource Remove="Views\Shared\Partial\Category\**" />
+    <EmbeddedResource Remove="Views\Shared\Partial\Product\**" />
+    <None Remove="Components\**" />
+    <None Remove="Data\Services\**" />
+    <None Remove="Views\Category\**" />
+    <None Remove="Views\Home\**" />
+    <None Remove="Views\Product\Partial\**" />
+    <None Remove="Views\Shared\Components\**" />
+    <None Remove="Views\Shared\Partial\Category\**" />
+    <None Remove="Views\Shared\Partial\Product\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+<<<<<<< HEAD
+    <Compile Remove="Components\CategoryMenu.cs" />
+=======
+    <Compile Remove="Data\Controllers\CategoryController.cs" />
+    <Compile Remove="Data\Controllers\HomeController.cs" />
+>>>>>>> a8c8172a34645cc402b01403685ac5079a3253ff
+    <Compile Remove="Data\IDbInitializer.cs" />
+    <Compile Remove="Data\Models\Category.cs" />
+    <Compile Remove="Data\Models\FileModel.cs" />
+    <Compile Remove="Data\Models\Login.cs" />
+    <Compile Remove="Data\Models\Role.cs" />
+    <Compile Remove="Data\Models\User.cs" />
+<<<<<<< HEAD
+    <Compile Remove="Data\Services\Interfaces\ICategoryRepository.cs" />
+    <Compile Remove="Data\Services\Interfaces\IProductRepository.cs" />
+    <Compile Remove="Data\Services\Repositories\CategoryRepository.cs" />
+    <Compile Remove="Data\Services\Repositories\ProductRepository.cs" />
+=======
+    <Compile Remove="ViewModels\CategoryViewModel.cs" />
+>>>>>>> a8c8172a34645cc402b01403685ac5079a3253ff
+    <Compile Remove="ViewModels\FileModel.cs" />
+    <Compile Remove="ViewModels\FilterViewModel.cs" />
+    <Compile Remove="ViewModels\HomeViewModel.cs" />
+    <Compile Remove="ViewModels\PageViewModel.cs" />
+    <Compile Remove="ViewModels\SortState.cs" />
+    <Compile Remove="ViewModels\SortViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Product\Delete.cshtml" />
+    <Content Remove="Views\Shared\LoginPartial.cshtml" />
+    <Content Remove="wwwroot\css\carousel.css" />
+    <Content Remove="wwwroot\css\signin.css" />
+    <Content Remove="wwwroot\css\StyleSheet.css" />
+    <Content Remove="wwwroot\Images\carousel1.jpg" />
+    <Content Remove="wwwroot\Images\carousel2.jpg" />
+    <Content Remove="wwwroot\Images\carousel3.jpg" />
+    <Content Remove="wwwroot\Images\diff.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+<<<<<<< HEAD
+    <None Remove="ClientApp\app\app.component.ts" />
+    <None Remove="ClientApp\app\app.module.ts" />
+    <None Remove="ClientApp\app\categories\category.component.ts" />
+    <None Remove="ClientApp\app\categories\category.service.ts" />
+    <None Remove="ClientApp\app\category.ts" />
+    <None Remove="ClientApp\app\data.service.ts" />
+    <None Remove="ClientApp\app\main.ts" />
+    <None Remove="ClientApp\app\product.ts" />
+    <None Remove="ClientApp\polyfills.ts" />
+=======
+    <None Remove="Data\Controllers\CategoryController.cs.orig" />
+    <None Remove="ViewModels\CategoryViewModel.cs.orig" />
+>>>>>>> a8c8172a34645cc402b01403685ac5079a3253ff
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CaptchaGen.NetCore" Version="1.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="Data\Services\Interfaces\" />
+    <Folder Include="Data\Services\Repositories\" />
+    <Folder Include="wwwroot\lib\bootstrap\landing\img\categories\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="bootstrap" Version="3.3.7" />   
+  </ItemGroup>
+  
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\categories\category.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\categories\category.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\category.ts" />
+    <TypeScriptCompile Include="ClientApp\app\data.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\product.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\polyfills.ts" />
+  </ItemGroup>
+
+</Project>
