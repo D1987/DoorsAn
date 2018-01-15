@@ -10,7 +10,7 @@ namespace DoorsAn1.ViewModels
     public class ProductViewModel
     {
         public Product Product { get; set; }
-        public FilterViewModel FilterViewModel { get; set; }
+        //public FilterViewModel FilterViewModel { get; set; }
         public IFormFile Image { get; set; }
     }
 }
