@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using DoorsAn1.Data.interfaces;
 using DoorsAn1.Data.Models;
 
-namespace DoorsAn1.Data.Repositories
+namespace DoorsAn1.Data.Services.Repositories
 {
     public class CategoryRepository: ICategoryRepository
     {

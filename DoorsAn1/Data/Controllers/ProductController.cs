@@ -14,6 +14,7 @@ using System.Collections.Generic;
 
 namespace DoorsAn1.Data.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ProductController:Controller
     {
@@ -30,7 +31,7 @@ namespace DoorsAn1.Data.Controllers
             //_environment = environment;
         }
 
-        # region List products
+        # region List products        
         [HttpGet]
         //[Authorize(Roles = "admin")]
         public async Task<IActionResult> GetProducts()
