@@ -2,6 +2,7 @@ using DoorsAn1.Data.Dtos;
 using DoorsAn1.Data.Models;
 using DoorsAn1.Data.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,10 +16,12 @@ namespace DoorsAn1.Data.Controllers
     public class AuthController: Controller
     {
         IAuthRepository _repo;
+        IConfiguration _configuration;
 
-        public AuthController(IAuthRepository repo)
+        public AuthController(IAuthRepository repo, IConfiguration configuration)
         {
             _repo = repo;
+            _configuration = configuration;
         }
 
         [HttpPost("register")]
@@ -52,7 +55,7 @@ namespace DoorsAn1.Data.Controllers
 
             //generate token
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("super secret key");
+            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("AppSettings:Token").Value);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

@@ -27,7 +27,7 @@ namespace DoorsAn1
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var key = Encoding.ASCII.GetBytes("super secret key");
+            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddDbContext<AppDbContext>(options => options
             .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
